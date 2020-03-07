@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ejecutarConsola(){
+    console.log("gola");
+  }
+
 }
