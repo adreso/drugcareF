@@ -9,30 +9,62 @@ import { SettingsService } from 'src/app/services/settings.service';
   styles: []
 })
 export class AccountSettingsComponent implements OnInit {
-  cambiar:boolean=false
+
+  bordeQuitado:boolean=false;
+  sizeTexto:boolean=false;
+  sizeNavBar:boolean=false;
+  sizeSidebar:boolean=false;
+  sizeFooter:boolean=false;
+  styleBarra:boolean=false;
+  styleBarra2:boolean=false;
+
   constructor(
     @Inject(DOCUMENT) private _document,
     public _ajustes:SettingsService
     ) { }
 
   ngOnInit(): void {
+    this.bordeQuitado=this._ajustes.bordeQuitado;
+    this.sizeTexto=this._ajustes.bordeQuitado;
+    this.sizeNavBar=this._ajustes.SizeNavBar;
+    this.sizeSidebar=this._ajustes.SizeSidebar;
+    this.sizeFooter=this._ajustes.SizeFooter;
+    this.styleBarra=this._ajustes.styleBarra;
+    this.styleBarra2=this._ajustes.styleBarra2;
   }
 
-  cambiarBorde(){
-
-    // this._ajustes.tipo="border-bottom-0";
-    // this._ajustes.variable="main-header";
-    // this.cambiar=!this.cambiar;
-    // if(this.cambiar){
-    //   this._document.getElementsByClassName("main-header")[0].classList.add("border-bottom-0");
-    // }else{
-    //   this._document.getElementsByClassName("main-header")[0].classList.remove("border-bottom-0");
-    // }
-
-    this._ajustes.guardarAjustes();
-    //.classList.add('border-bottom-0');
+  cambiarBorde(e){
+    this.bordeQuitado=e.target.checked;
+    this._ajustes.cambiarAjustes("QuitarBorde",this.bordeQuitado);
   }
 
+  cambiarSizeTexto(e){
+    this.sizeTexto=e.target.checked;
+    this._ajustes.cambiarAjustes("SizeTexto",this.sizeTexto);
+  }
+  TextNavBar(e){
+    this.sizeNavBar=e.target.checked;
+    this._ajustes.cambiarAjustes("SizeNavBar", this.sizeNavBar);
+  }
+  TextSidebar(e){
+    this.sizeSidebar=e.target.checked;
+    this._ajustes.cambiarAjustes("SizeSidebar", this.sizeSidebar);
+  }
+
+  TextFooter(e){
+    this.sizeFooter=e.target.checked;
+    this._ajustes.cambiarAjustes("SizeFooter", this.sizeFooter);
+  }
+
+  StyleIzquierda(e){
+    this.styleBarra=e.target.checked;
+    this._ajustes.cambiarAjustes("StyleIzquierda", this.styleBarra);
+  }
+
+  StyleIzquierda2(e){
+    this.styleBarra2=e.target.checked;
+    this._ajustes.cambiarAjustes("StyleIzquierda2", this.styleBarra2);
+  }
 
 
 
