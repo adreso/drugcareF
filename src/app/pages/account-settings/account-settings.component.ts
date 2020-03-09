@@ -17,6 +17,10 @@ export class AccountSettingsComponent implements OnInit {
   sizeFooter:boolean=false;
   styleBarra:boolean=false;
   styleBarra2:boolean=false;
+  compactSidebar:boolean=false;
+  identarSidebar:boolean=false;
+  noExpand:boolean=false;
+  sizeLogo:boolean=false;
 
   constructor(
     @Inject(DOCUMENT) private _document,
@@ -31,6 +35,10 @@ export class AccountSettingsComponent implements OnInit {
     this.sizeFooter=this._ajustes.SizeFooter;
     this.styleBarra=this._ajustes.styleBarra;
     this.styleBarra2=this._ajustes.styleBarra2;
+    this.compactSidebar=this._ajustes.compactSidebar;
+    this.identarSidebar=this._ajustes.identarSidebar;
+    this.noExpand=this._ajustes.noExpand;
+    this.sizeLogo=this._ajustes.sizeLogo;
   }
 
   cambiarBorde(e){
@@ -65,7 +73,24 @@ export class AccountSettingsComponent implements OnInit {
     this.styleBarra2=e.target.checked;
     this._ajustes.cambiarAjustes("StyleIzquierda2", this.styleBarra2);
   }
+  compactIzquierda(e){
+    this.compactSidebar=e.target.checked;
+    this._ajustes.cambiarAjustes("compactSidebar", this.compactSidebar);
+  }
 
+  identarIzquierda(e){
+    this.identarSidebar=e.target.checked;
+    this._ajustes.cambiarAjustes("identarSidebar", this.identarSidebar);
+  }
+
+  noExpandir(e){
+    this.noExpand=e.target.checked;
+    this._ajustes.cambiarAjustes("noExpand", this.noExpand);
+  }
+  sizeIcono(e){
+    this.sizeLogo=e.target.checked;
+    this._ajustes.cambiarAjustes("sizeLogo", this.sizeLogo);
+  }
 
 
 

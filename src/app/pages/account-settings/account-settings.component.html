@@ -16,13 +16,13 @@
                         <p class="text-muted text-center">Software Engineer</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Followers</b> <a class="float-right">1,322</a>
                             </li>
-                            <li class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Following</b> <a class="float-right">543</a>
                             </li>
-                            <li class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Friends</b> <a class="float-right">13,287</a>
                             </li>
                         </ul>
@@ -51,9 +51,9 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                     </div>
                     <!-- /.card-header -->
@@ -67,9 +67,6 @@
                                 <!-- The timeline -->
                             </div>
                             <!-- /.tab-pane -->
-
-
-
                             <div class="tab-pane" id="settings">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -81,45 +78,70 @@
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="cambiarBorde($event)" [checked]="bordeQuitado" type="checkbox" class="custom-control-input" id="customSwitch1">
-                                                        <label class="custom-control-label" for="customSwitch1">Borde de la barra de navegación </label>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-switch">
-                                                        <input (change)="cambiarSizeTexto($event)" [checked]="sizeTexto" type="checkbox" class="custom-control-input" id="customSwitch2">
-                                                        <label class="custom-control-label" for="customSwitch2">Reducir tamaño del texto</label>
+                                                        <label class="custom-control-label" for="customSwitch1">Borde barra navegación</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="TextNavBar($event)" [checked]="sizeNavBar" type="checkbox" class="custom-control-input" id="customSwitch3">
-                                                        <label class="custom-control-label" for="customSwitch3">Reducir tamaño Barra Navegación</label>
+                                                        <label class="custom-control-label" for="customSwitch3">Reducir texto NavBar</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="TextSidebar($event)" [checked]="sizeSidebar" type="checkbox" class="custom-control-input" id="customSwitch4">
-                                                        <label class="custom-control-label" for="customSwitch4">Reducir tamaño barra Izquierda</label>
+                                                        <label class="custom-control-label" for="customSwitch4">Reducir texto SideBar</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="TextFooter($event)" [checked]="sizeFooter" type="checkbox" class="custom-control-input" id="customSwitch7">
-                                                        <label class="custom-control-label" for="customSwitch7">Reducir tamaño Barra inferior</label>
+                                                        <label class="custom-control-label" for="customSwitch7">Reducir texto Footer</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input (change)="sizeIcono($event)" [checked]="sizeLogo" type="checkbox" class="custom-control-input" id="customSwitch11">
+                                                        <label class="custom-control-label" for="customSwitch11">Reducir texto Brand-Link</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input (change)="cambiarSizeTexto($event)" [checked]="sizeTexto" type="checkbox" class="custom-control-input" id="customSwitch2">
+                                                        <label class="custom-control-label" for="customSwitch2">Reducir texto aplicativo</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="StyleIzquierda($event)" [checked]="styleBarra" type="checkbox" class="custom-control-input" id="customSwitch5">
-                                                        <label class="custom-control-label" for="customSwitch5">barra izquierda estilo Flat</label>
+                                                        <label class="custom-control-label" for="customSwitch5">Estilo Flat Sidebar</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="custom-control custom-switch">
                                                         <input (change)="StyleIzquierda2($event)" [checked]="styleBarra2" type="checkbox" class="custom-control-input" id="customSwitch6">
-                                                        <label class="custom-control-label" for="customSwitch6">Barra izquierda Legacy</label>
+                                                        <label class="custom-control-label" for="customSwitch6">Estilo Legacy Sidebar</label>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input (change)="compactIzquierda($event)" [checked]="compactSidebar" type="checkbox" class="custom-control-input" id="customSwitch8">
+                                                        <label class="custom-control-label" for="customSwitch8">Estilo Compacto Sidebar</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input (change)="identarIzquierda($event)" [checked]="identarSidebar" type="checkbox" class="custom-control-input" id="customSwitch9">
+                                                        <label class="custom-control-label" for="customSwitch9">Estilo identado Sidebar</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-switch">
+                                                        <input (change)="noExpandir($event)" [checked]="noExpand" type="checkbox" class="custom-control-input" id="customSwitch10">
+                                                        <label class="custom-control-label" for="customSwitch10">No expandir barra izquierda</label>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -129,7 +151,82 @@
                                                 <h3 class="card-title">Configuración colores</h3>
                                             </div>
                                             <div class="card-body">
+                                                <div class="row">
 
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h3 class="card-title">Color NavBar</h3>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="btn-group-vertical">
+                                                                    <div class="btn-group">
+
+                                                                        <li style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(10, 110, 217);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(96, 106, 113);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(28, 142, 160);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="card">
+                                                            <div class="card-header">
+                                                                <h3 class="card-title">Color Links</h3>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="btn-group-vertical">
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

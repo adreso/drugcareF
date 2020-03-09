@@ -12,7 +12,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent
 
   ],
-  imports: [],
+  imports: [
+
+  ],
   exports: [
     BreadcrumbsComponent,
     FooterComponent,

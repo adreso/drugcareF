@@ -12,6 +12,10 @@ export class SettingsService {
   SizeFooter:boolean=false;
   styleBarra:boolean=false;
   styleBarra2:boolean=false;
+  compactSidebar:boolean=false;
+  identarSidebar:boolean=false;
+  noExpand:boolean=false;
+  sizeLogo:boolean=false;
 
   constructor(@Inject(DOCUMENT) private _document) {
     this.cargarAjustes();
@@ -67,6 +71,30 @@ export class SettingsService {
       this.styleBarra2 = localStorage.getItem("StyleIzquierda2") == "true";
       window.addEventListener("load", () => {
         this.cambiarAjustes("StyleIzquierda2", this.styleBarra2);
+      });
+    }
+    if (localStorage.getItem("compactSidebar")) {
+      this.compactSidebar = localStorage.getItem("compactSidebar") == "true";
+      window.addEventListener("load", () => {
+        this.cambiarAjustes("compactSidebar", this.compactSidebar);
+      });
+    }
+    if (localStorage.getItem("identarSidebar")) {
+      this.identarSidebar = localStorage.getItem("identarSidebar") == "true";
+      window.addEventListener("load", () => {
+        this.cambiarAjustes("identarSidebar", this.identarSidebar);
+      });
+    }
+    if (localStorage.getItem("noExpand")) {
+      this.noExpand = localStorage.getItem("noExpand") == "true";
+      window.addEventListener("load", () => {
+        this.cambiarAjustes("noExpand", this.noExpand);
+      });
+    }
+    if (localStorage.getItem("sizeLogo")) {
+      this.sizeLogo = localStorage.getItem("sizeLogo") == "true";
+      window.addEventListener("load", () => {
+        this.cambiarAjustes("sizeLogo", this.sizeLogo);
       });
     }
 
@@ -134,6 +162,38 @@ export class SettingsService {
             this._document.getElementsByClassName("nav-sidebar")[0].classList.add("nav-legacy");
           } else {
             this._document.getElementsByClassName("nav-sidebar")[0].classList.remove("nav-legacy");
+          }
+          break;
+          case "compactSidebar":
+          this.compactSidebar=cambiar;
+          if(cambiar){
+            this._document.getElementsByClassName("nav-sidebar")[0].classList.add("nav-compact");
+          } else {
+            this._document.getElementsByClassName("nav-sidebar")[0].classList.remove("nav-compact");
+          }
+          break;
+          case "identarSidebar":
+          this.identarSidebar=cambiar;
+          if(cambiar){
+            this._document.getElementsByClassName("nav-sidebar")[0].classList.add("nav-child-indent");
+          } else {
+            this._document.getElementsByClassName("nav-sidebar")[0].classList.remove("nav-child-indent");
+          }
+          break;
+          case "noExpand":
+          this.noExpand=cambiar;
+          if(cambiar){
+            this._document.getElementsByClassName("main-sidebar")[0].classList.add("sidebar-no-expand");
+          } else {
+            this._document.getElementsByClassName("main-sidebar")[0].classList.remove("sidebar-no-expand");
+          }
+          break;
+          case "sizeLogo":
+          this.sizeLogo=cambiar;
+          if(cambiar){
+            this._document.getElementsByClassName("brand-link")[0].classList.add("text-sm");
+          } else {
+            this._document.getElementsByClassName("brand-link")[0].classList.remove("text-sm");
           }
           break;
     }
