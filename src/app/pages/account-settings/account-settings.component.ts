@@ -10,6 +10,25 @@ import { SettingsService } from 'src/app/services/settings.service';
 })
 export class AccountSettingsComponent implements OnInit {
 
+  accent_colors = [
+    'accent-primary',
+    'accent-warning',
+    'accent-info',
+    'accent-danger',
+    'accent-success',
+    'accent-indigo',
+    'accent-lightblue',
+    'accent-navy',
+    'accent-purple',
+    'accent-fuchsia',
+    'accent-pink',
+    'accent-maroon',
+    'accent-orange',
+    'accent-lime',
+    'accent-teal',
+    'accent-olive'
+  ]
+
   bordeQuitado:boolean=false;
   sizeTexto:boolean=false;
   sizeNavBar:boolean=false;
@@ -21,7 +40,7 @@ export class AccountSettingsComponent implements OnInit {
   identarSidebar:boolean=false;
   noExpand:boolean=false;
   sizeLogo:boolean=false;
-  
+
   colorSelNavBar:string='navbar-dark';
 
   constructor(
@@ -42,7 +61,7 @@ export class AccountSettingsComponent implements OnInit {
     this.noExpand=this._ajustes.noExpand;
     this.sizeLogo=this._ajustes.sizeLogo;
 
-    this.colocarCheck();
+    this.colocarCheckNavBar();
   }
 
   cambiarBorde(e){
@@ -97,12 +116,12 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   colorNavBar(color:string, link:ElementRef){
-  this.aplicarCheck(link);
+  this.aplicarCheckNavBar(link);
   this.colorSelNavBar=color;
   this._ajustes.cambiarAjustes2('colorNavBar',color);
   }
 
-  aplicarCheck(link:any){
+  aplicarCheckNavBar(link:any){
     let selectores:any = document.getElementsByClassName('btn-link');
     for(let ref of selectores){
       ref.classList.remove('btn-outline-warning');
@@ -110,7 +129,7 @@ export class AccountSettingsComponent implements OnInit {
     link.classList.add('btn-outline-warning');
   }
 
-  colocarCheck(){
+  colocarCheckNavBar(){
     let selectores:any = document.getElementsByClassName('btn-link');
     for(let ref of selectores){
       if(ref.getAttribute('data-theme') === this._ajustes.colorSelNavBar){
@@ -118,6 +137,23 @@ export class AccountSettingsComponent implements OnInit {
         break;
       }
     }
+  }
+
+  colorAccent(color:string, link:ElementRef){
+    this.aplicarCheckAccent(link);
+    this.accent_colors.map(function (skin) {
+      document.getElementsByTagName('body')[0].classList.remove(skin);
+    });
+    document.getElementsByTagName('body')[0].classList.add(color);
+  }
+
+
+  aplicarCheckAccent(link:any){
+    let selectores:any = document.getElementsByClassName('btn-default');
+    for(let ref of selectores){
+      ref.classList.remove('border-danger');
+    }
+    link.classList.add('border-danger');
   }
 
 }

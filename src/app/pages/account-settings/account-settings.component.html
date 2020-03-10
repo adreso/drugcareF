@@ -16,13 +16,13 @@
                         <p class="text-muted text-center">Software Engineer</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
-                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Followers</b> <a class="float-right">1,322</a>
                             </li>
-                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Following</b> <a class="float-right">543</a>
                             </li>
-                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
+                            <li style="cursor: pointer;" class="list-group-item">
                                 <b>Friends</b> <a class="float-right">13,287</a>
                             </li>
                         </ul>
@@ -51,9 +51,9 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                     </div>
                     <!-- /.card-header -->
@@ -203,29 +203,35 @@
                                                             <div class="card-body">
                                                                 <div class="btn-group-vertical">
                                                                     <div class="btn-group">
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link21 (click)="colorAccent('accent-primary',link21)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(28, 142, 160);"></i></li>
+                                                                        <li #link22 (click)="colorAccent('accent-warning',link22)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link23 (click)="colorAccent('accent-',link23)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link24 (click)="colorAccent('accent-',link24)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
 
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link25 (click)="colorAccent('accent-',link25)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link26 (click)="colorAccent('accent-',link26)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link27 (click)="colorAccent('accent-',link27)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link28 (click)="colorAccent('accent-',link28)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link29 (click)="colorAccent('accent-',link29)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link30 (click)="colorAccent('accent-',link30)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link31 (click)="colorAccent('accent-',link31)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link32 (click)="colorAccent('accent-',link32)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link33 (click)="colorAccent('accent-',link33)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link34 (click)="colorAccent('accent-',link34)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link35 (click)="colorAccent('accent-',link35)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link36 (click)="colorAccent('accent-',link36)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li #link37 (click)="colorAccent('accent-',link37)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link38 (click)="colorAccent('accent-',link38)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link39 (click)="colorAccent('accent-',link39)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link40 (click)="colorAccent('accent-',link40)" style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                 </div>
                                                             </div>
