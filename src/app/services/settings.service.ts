@@ -5,6 +5,34 @@ import { DOCUMENT } from "@angular/common";
   providedIn: "root"
 })
 export class SettingsService {
+
+  navbar_dark_skins = [
+    'navbar-primary',
+    'navbar-secondary',
+    'navbar-info',
+    'navbar-success',
+    'navbar-danger',
+    'navbar-indigo',
+    'navbar-purple',
+    'navbar-pink',
+    'navbar-navy',
+    'navbar-lightblue',
+    'navbar-teal',
+    'navbar-cyan',
+    'navbar-dark',
+    'navbar-gray-dark',
+    'navbar-gray',
+  ];
+
+  navbar_light_skins = [
+    'navbar-light',
+    'navbar-warning',
+    'navbar-white',
+    'navbar-orange',
+    'navbar-red'
+  ];
+
+
   bordeQuitado: boolean = false;
   sizeTexto:boolean=false;
   SizeNavBar:boolean=false;
@@ -17,12 +45,17 @@ export class SettingsService {
   noExpand:boolean=false;
   sizeLogo:boolean=false;
 
+  colorSelNavBar:string='navbar-dark';
+
   constructor(@Inject(DOCUMENT) private _document) {
     this.cargarAjustes();
   }
 
   guardarAjustes(tipo:string, valor:boolean) {
     localStorage.setItem(tipo, valor + "");
+  }
+  guardarAjustes2(tipo:string, valor:string) {
+    localStorage.setItem(tipo, valor);
   }
 
   cargarAjustes() {
@@ -95,6 +128,13 @@ export class SettingsService {
       this.sizeLogo = localStorage.getItem("sizeLogo") == "true";
       window.addEventListener("load", () => {
         this.cambiarAjustes("sizeLogo", this.sizeLogo);
+      });
+    }
+
+    if(localStorage.getItem("colorNavBar")){
+      this.colorSelNavBar=localStorage.getItem("colorNavBar");
+      window.addEventListener("load", () => {
+        this.cambiarAjustes2("colorNavBar", this.colorSelNavBar);
       });
     }
 
@@ -198,5 +238,28 @@ export class SettingsService {
           break;
     }
     this.guardarAjustes(tipo, cambiar);
+  }
+
+  cambiarAjustes2(tipo:string, cambiar:string){
+    const mainHeader =this._document.getElementsByClassName("main-header")[0].classList;
+    var all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
+
+    mainHeader.remove("navbar-dark");
+    mainHeader.remove("navbar-light");
+
+    all_colors.map(function (color) {
+      mainHeader.remove(color);
+    });
+
+    if(this.navbar_light_skins.indexOf(cambiar)>-1){
+      mainHeader.add("navbar-light");
+    }else{
+      mainHeader.add("navbar-dark");
+    }
+    mainHeader.add(cambiar);
+
+
+    this.colorSelNavBar=cambiar;
+    this.guardarAjustes2("colorNavBar", this.colorSelNavBar);
   }
 }

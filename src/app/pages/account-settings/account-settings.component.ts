@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { SettingsService } from 'src/app/services/settings.service';
 
@@ -21,6 +21,8 @@ export class AccountSettingsComponent implements OnInit {
   identarSidebar:boolean=false;
   noExpand:boolean=false;
   sizeLogo:boolean=false;
+  
+  colorSelNavBar:string='navbar-dark';
 
   constructor(
     @Inject(DOCUMENT) private _document,
@@ -39,6 +41,8 @@ export class AccountSettingsComponent implements OnInit {
     this.identarSidebar=this._ajustes.identarSidebar;
     this.noExpand=this._ajustes.noExpand;
     this.sizeLogo=this._ajustes.sizeLogo;
+
+    this.colocarCheck();
   }
 
   cambiarBorde(e){
@@ -92,6 +96,28 @@ export class AccountSettingsComponent implements OnInit {
     this._ajustes.cambiarAjustes("sizeLogo", this.sizeLogo);
   }
 
+  colorNavBar(color:string, link:ElementRef){
+  this.aplicarCheck(link);
+  this.colorSelNavBar=color;
+  this._ajustes.cambiarAjustes2('colorNavBar',color);
+  }
 
+  aplicarCheck(link:any){
+    let selectores:any = document.getElementsByClassName('btn-link');
+    for(let ref of selectores){
+      ref.classList.remove('btn-outline-warning');
+    }
+    link.classList.add('btn-outline-warning');
+  }
+
+  colocarCheck(){
+    let selectores:any = document.getElementsByClassName('btn-link');
+    for(let ref of selectores){
+      if(ref.getAttribute('data-theme') === this._ajustes.colorSelNavBar){
+        ref.classList.add('btn-outline-warning');
+        break;
+      }
+    }
+  }
 
 }

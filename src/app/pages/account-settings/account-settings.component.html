@@ -16,13 +16,13 @@
                         <p class="text-muted text-center">Software Engineer</p>
 
                         <ul class="list-group list-group-unbordered mb-3">
-                            <li style="cursor: pointer;" class="list-group-item">
+                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
                                 <b>Followers</b> <a class="float-right">1,322</a>
                             </li>
-                            <li style="cursor: pointer;" class="list-group-item">
+                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
                                 <b>Following</b> <a class="float-right">543</a>
                             </li>
-                            <li style="cursor: pointer;" class="list-group-item">
+                            <li data-theme="navbar-" style="cursor: pointer;" class="list-group-item">
                                 <b>Friends</b> <a class="float-right">13,287</a>
                             </li>
                         </ul>
@@ -51,9 +51,9 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
-                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
-                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                            <li style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
+                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                            <li data-theme="navbar-" style="cursor: pointer;" class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                         </ul>
                     </div>
                     <!-- /.card-header -->
@@ -162,28 +162,34 @@
                                                                 <div class="btn-group-vertical">
                                                                     <div class="btn-group">
 
-                                                                        <li style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(10, 110, 217);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(96, 106, 113);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(28, 142, 160);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link1 (click)="colorNavBar('navbar-primary',link1)" data-theme="navbar-primary" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(10, 110, 217);"></i></li>
+                                                                        <li #link2 (click)="colorNavBar('navbar-secondary',link2)" data-theme="navbar-secondary" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(96, 106, 113);"></i></li>
+                                                                        <li #link3 (click)="colorNavBar('navbar-info',link3)" data-theme="navbar-info" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(28, 142, 160);"></i></li>
+                                                                        <li #link4 (click)="colorNavBar('navbar-success',link4)" data-theme="navbar-success" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link5 (click)="colorNavBar('navbar-danger',link5)" data-theme="navbar-danger" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link6 (click)="colorNavBar('navbar-indigo',link6)" data-theme="navbar-indigo" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link7 (click)="colorNavBar('navbar-purple',link7)" data-theme="navbar-purple" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link8 (click)="colorNavBar('navbar-pink',link8)" data-theme="navbar-pink" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link9 (click)="colorNavBar('navbar-navy',link9)" data-theme="navbar-navy" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link10 (click)="colorNavBar('navbar-lightblue',link10)" data-theme="navbar-lightblue" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link11 (click)="colorNavBar('navbar-teal',link11)" data-theme="navbar-teal" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link12 (click)="colorNavBar('navbar-cyan',link12)" data-theme="navbar-cyan" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link13 (click)="colorNavBar('navbar-dark',link13)" data-theme="navbar-dark" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link14 (click)="colorNavBar('navbar-gray-dark',link14)" data-theme="navbar-gray-dark" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link15 (click)="colorNavBar('navbar-gray',link15)" data-theme="navbar-gray" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link16 (click)="colorNavBar('navbar-light',link16)" data-theme="navbar-light" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <li #link17 (click)="colorNavBar('navbar-orange',link17)" data-theme="navbar-orange" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link18 (click)="colorNavBar('navbar-warning',link18)" data-theme="navbar-warning" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link19 (click)="colorNavBar('navbar-white',link19)" data-theme="navbar-white" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li #link20 (click)="colorNavBar('navbar-red',link20)" data-theme="navbar-red" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -197,29 +203,29 @@
                                                             <div class="card-body">
                                                                 <div class="btn-group-vertical">
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
 
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                     <div class="btn-group">
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
-                                                                        <li style="cursor: pointer;" class="btn btn-default"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
+                                                                        <li data-theme="navbar-" style="cursor: pointer;" class="btn btn-link"><i class="fas fa-tint" style="color: rgb(red, green, blue);"></i></li>
                                                                     </div>
                                                                 </div>
                                                             </div>
