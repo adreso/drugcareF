@@ -32,6 +32,28 @@ export class SettingsService {
     'navbar-red'
   ];
 
+  accent_colors = [
+    'accent-primary',
+    'accent-warning',
+    'accent-info',
+    'accent-danger',
+    'accent-success',
+    'accent-indigo',
+    'accent-lightblue',
+    'accent-navy',
+    'accent-purple',
+    'accent-fuchsia',
+    'accent-pink',
+    'accent-maroon',
+    'accent-orange',
+    'accent-lime',
+    'accent-teal',
+    'accent-olive',
+    'accent-red',
+    'accent-blue',
+    'accent-green',
+    'accent-gray'
+  ];
 
   bordeQuitado: boolean = false;
   sizeTexto:boolean=false;
@@ -46,6 +68,7 @@ export class SettingsService {
   sizeLogo:boolean=false;
 
   colorSelNavBar:string='navbar-dark';
+  colorAccent:string='accent-primary';
 
   constructor(@Inject(DOCUMENT) private _document) {
     this.cargarAjustes();
@@ -135,6 +158,12 @@ export class SettingsService {
       this.colorSelNavBar=localStorage.getItem("colorNavBar");
       window.addEventListener("load", () => {
         this.cambiarAjustes2("colorNavBar", this.colorSelNavBar);
+      });
+    }
+    if(localStorage.getItem("colorAccent")){
+      this.colorAccent=localStorage.getItem("colorAccent");
+      window.addEventListener("load", () => {
+        this.cambiarAjustes2("colorAccent", this.colorAccent);
       });
     }
 
@@ -241,25 +270,39 @@ export class SettingsService {
   }
 
   cambiarAjustes2(tipo:string, cambiar:string){
-    const mainHeader =this._document.getElementsByClassName("main-header")[0].classList;
-    var all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
 
-    mainHeader.remove("navbar-dark");
-    mainHeader.remove("navbar-light");
+    switch(tipo){
+      case "colorNavBar":
+        const mainHeader =this._document.getElementsByClassName("main-header")[0].classList;
+        var all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
+    
+        mainHeader.remove("navbar-dark");
+        mainHeader.remove("navbar-light");
+    
+        all_colors.map(function (color) {
+          mainHeader.remove(color);
+        });
+    
+        if(this.navbar_light_skins.indexOf(cambiar)>-1){
+          mainHeader.add("navbar-light");
+        }else{
+          mainHeader.add("navbar-dark");
+        }
+        mainHeader.add(cambiar);
+        this.colorSelNavBar=cambiar;
+        
+        break;
+      case "colorAccent":
+        this.accent_colors.map(function (skin) {
+          document.getElementsByTagName('body')[0].classList.remove(skin);
+        });
+        document.getElementsByTagName('body')[0].classList.add(cambiar);
+        this.colorAccent=cambiar;
+    break;
 
-    all_colors.map(function (color) {
-      mainHeader.remove(color);
-    });
-
-    if(this.navbar_light_skins.indexOf(cambiar)>-1){
-      mainHeader.add("navbar-light");
-    }else{
-      mainHeader.add("navbar-dark");
-    }
-    mainHeader.add(cambiar);
-
-
-    this.colorSelNavBar=cambiar;
-    this.guardarAjustes2("colorNavBar", this.colorSelNavBar);
   }
+  this.guardarAjustes2(tipo, cambiar);
+
+  }
+
 }

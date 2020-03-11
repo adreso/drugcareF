@@ -9,25 +9,59 @@ import { SettingsService } from 'src/app/services/settings.service';
   styles: []
 })
 export class AccountSettingsComponent implements OnInit {
+  sidebar_colors = [
+    'bg-primary',
+    'bg-warning',
+    'bg-info',
+    'bg-danger',
+    'bg-success',
+    'bg-indigo',
+    'bg-lightblue',
+    'bg-navy',
+    'bg-purple',
+    'bg-fuchsia',
+    'bg-pink',
+    'bg-maroon',
+    'bg-orange',
+    'bg-lime',
+    'bg-teal',
+    'bg-olive'
+  ];
 
-  accent_colors = [
-    'accent-primary',
-    'accent-warning',
-    'accent-info',
-    'accent-danger',
-    'accent-success',
-    'accent-indigo',
-    'accent-lightblue',
-    'accent-navy',
-    'accent-purple',
-    'accent-fuchsia',
-    'accent-pink',
-    'accent-maroon',
-    'accent-orange',
-    'accent-lime',
-    'accent-teal',
-    'accent-olive'
-  ]
+  sidebar_skins = [
+    'sidebar-dark-primary',
+    'sidebar-dark-warning',
+    'sidebar-dark-info',
+    'sidebar-dark-danger',
+    'sidebar-dark-success',
+    'sidebar-dark-indigo',
+    'sidebar-dark-lightblue',
+    'sidebar-dark-navy',
+    'sidebar-dark-purple',
+    'sidebar-dark-fuchsia',
+    'sidebar-dark-pink',
+    'sidebar-dark-maroon',
+    'sidebar-dark-orange',
+    'sidebar-dark-lime',
+    'sidebar-dark-teal',
+    'sidebar-dark-olive',
+    'sidebar-light-primary',
+    'sidebar-light-warning',
+    'sidebar-light-info',
+    'sidebar-light-danger',
+    'sidebar-light-success',
+    'sidebar-light-indigo',
+    'sidebar-light-lightblue',
+    'sidebar-light-navy',
+    'sidebar-light-purple',
+    'sidebar-light-fuchsia',
+    'sidebar-light-pink',
+    'sidebar-light-maroon',
+    'sidebar-light-orange',
+    'sidebar-light-lime',
+    'sidebar-light-teal',
+    'sidebar-light-olive'
+  ];
 
   bordeQuitado:boolean=false;
   sizeTexto:boolean=false;
@@ -42,6 +76,7 @@ export class AccountSettingsComponent implements OnInit {
   sizeLogo:boolean=false;
 
   colorSelNavBar:string='navbar-dark';
+  colorAccents:string='accent-primary';
 
   constructor(
     @Inject(DOCUMENT) private _document,
@@ -62,6 +97,7 @@ export class AccountSettingsComponent implements OnInit {
     this.sizeLogo=this._ajustes.sizeLogo;
 
     this.colocarCheckNavBar();
+    this.colocarAccent();
   }
 
   cambiarBorde(e){
@@ -141,13 +177,9 @@ export class AccountSettingsComponent implements OnInit {
 
   colorAccent(color:string, link:ElementRef){
     this.aplicarCheckAccent(link);
-    this.accent_colors.map(function (skin) {
-      document.getElementsByTagName('body')[0].classList.remove(skin);
-    });
-    document.getElementsByTagName('body')[0].classList.add(color);
+    this.colorAccents=color;
+    this._ajustes.cambiarAjustes2('colorAccent', color)
   }
-
-
   aplicarCheckAccent(link:any){
     let selectores:any = document.getElementsByClassName('btn-default');
     for(let ref of selectores){
@@ -155,5 +187,23 @@ export class AccountSettingsComponent implements OnInit {
     }
     link.classList.add('border-danger');
   }
+
+  colocarAccent(){
+    let selectores:any = document.getElementsByClassName('btn-default');
+    for(let ref of selectores){
+      if(ref.getAttribute('data-theme2') === this._ajustes.colorSelNavBar){
+        ref.classList.add('border-danger');
+        break;
+      }
+    }
+  }
+
+  colorSidebar(color:string, enlace:ElementRef){
+    this.sidebar_skins.map(function (skin) {
+      document.getElementsByClassName("main-sidebar")[0].classList.remove(skin);
+    });
+    document.getElementsByClassName("main-sidebar")[0].classList.add(color);
+  }
+
 
 }
