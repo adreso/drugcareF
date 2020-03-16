@@ -1,16 +1,16 @@
 <div class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a routerLink="/dashboard"><b>Admin</b>LTE</a>
+            <a routerLink="/dashboard"><b>DrudCare</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Entra tus datos para iniciar sesión</p>
 
-                <form (ngSubmit)="ingresar()">
+                <form ngNativeValidate #f="ngForm" (ngSubmit)="ingresar(f)">
                     <div class="input-group mb-3 ">
-                        <input type="email " class="form-control " placeholder="Email ">
+                        <input [ngModel]="usuario" name="usuario" class="form-control " required placeholder="Usuario">
                         <div class="input-group-append ">
                             <div class="input-group-text ">
                                 <span class="fas fa-envelope "></span>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3 ">
-                        <input type="password " class="form-control " placeholder="Password ">
+                        <input ngModel name="password" required type="password" class="form-control " placeholder="Password ">
                         <div class="input-group-append ">
                             <div class="input-group-text ">
                                 <span class="fas fa-lock "></span>
@@ -28,9 +28,9 @@
                     <div class="row ">
                         <div class="col-8 ">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember ">
+                                <input [(ngModel)]="recuerdame" name="recuerdame" type="checkbox">
                                 <label for="remember ">
-                                    Remember Me
+                                    Recordarme
                                 </label>
                             </div>
                         </div>
@@ -43,21 +43,21 @@
                 </form>
 
                 <div class="social-auth-links text-center mb-3 ">
-                    <p>- OR -</p>
+                    <p>- O -</p>
                     <a href="# " class="btn btn-block btn-primary ">
-                        <i class="fab fa-facebook mr-2 "></i> Sign in using Facebook
+                        <i class="fab fa-facebook mr-2 "></i> Entrar usando Facebook
                     </a>
                     <a href="# " class="btn btn-block btn-danger ">
-                        <i class="fab fa-google-plus mr-2 "></i> Sign in using Google+
+                        <i class="fab fa-google-plus mr-2 "></i> Entrar usando Google
                     </a>
                 </div>
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1 ">
-                    <a href="forgot-password.html ">I forgot my password</a>
+                    <a href="#">Olvidé mi contraseña</a>
                 </p>
                 <p class="mb-0 ">
-                    <a href="register.html " class="text-center ">Register a new membership</a>
+                    <a [routerLink]="['/register']" class="text-center ">Registrar una nueva cuenta</a>
                 </p>
             </div>
             <!-- /.login-card-body -->

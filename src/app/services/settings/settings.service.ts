@@ -275,14 +275,14 @@ export class SettingsService {
       case "colorNavBar":
         const mainHeader =this._document.getElementsByClassName("main-header")[0].classList;
         var all_colors = this.navbar_dark_skins.concat(this.navbar_light_skins);
-    
+
         mainHeader.remove("navbar-dark");
         mainHeader.remove("navbar-light");
-    
+
         all_colors.map(function (color) {
           mainHeader.remove(color);
         });
-    
+
         if(this.navbar_light_skins.indexOf(cambiar)>-1){
           mainHeader.add("navbar-light");
         }else{
@@ -290,7 +290,7 @@ export class SettingsService {
         }
         mainHeader.add(cambiar);
         this.colorSelNavBar=cambiar;
-        
+
         break;
       case "colorAccent":
         this.accent_colors.map(function (skin) {

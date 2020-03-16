@@ -16,6 +16,10 @@ export class SidebarService {
           titulo:'Dashboard',
           url:'/dashboard'
 
+        },
+        {
+          titulo:'Paises',
+          url:'/paises'
         }
       ]
     }

@@ -1,0 +1,9 @@
+<table class="table">
+    <tbody>
+        <tr *ngFor="let paises of pais">
+            <td> {{paises.nombre}} </td>
+            <td>{{paises.indicador}}</td>
+        </tr>
+        {{pais | json}}
+    </tbody>
+</table>
