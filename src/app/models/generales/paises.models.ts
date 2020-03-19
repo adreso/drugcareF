@@ -1,9 +1,5 @@
 export class Paise {
-  constructor(
-    public nombre: string,
-    public indicador: string,
-    public id?: number
-  ){
-
-  }
+    public id: number;
+    public nombre: string;
+    public indicativo: string;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PaisesService } from 'src/app/services/generales/paises.service';
 import {Paise} from './../../../models/generales/paises.models';
+import { NgForm } from '@angular/forms';
+import { Toast } from 'src/app/config/alertas';
 
 @Component({
   selector: 'app-paises',
@@ -9,7 +11,8 @@ import {Paise} from './../../../models/generales/paises.models';
 })
 export class PaisesComponent implements OnInit {
 
-  pais:any;
+  pais:Paise = new Paise();
+  paises:Paise[];
 
   constructor(
     public _paisesService:PaisesService
@@ -20,13 +23,26 @@ export class PaisesComponent implements OnInit {
   }
 
   getPaises(){
-    this._paisesService.cargarHospitales().subscribe(
+    this._paisesService.cargarPaises().subscribe(
       paises =>{
-        // this.pais=paises.pais;
-        console.log(paises);
+        this.paises = paises;
+        console.log(this.paises);
+        // console.log(this.paises);
+
         // console.log(paises.pais);
       }
     );
   }
+
+guardar(){
+// console.log(this.pais);
+this._paisesService.guardarMedico(this.pais).subscribe(
+  resp =>{
+    Toast.fire({icon:'success', title:'Pais guardado correctamente'})
+
+    this.getPaises();
+  }
+)
+}
 
 }

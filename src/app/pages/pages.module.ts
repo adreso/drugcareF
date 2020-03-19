@@ -8,6 +8,8 @@ import {SharedModule} from '../shared/shared.module';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PaisesComponent } from './generales/paises/paises.component';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import { CommonModule } from '@angular/common';
   imports: [
     SharedModule,
     PAGES_ROUTES,
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     DashboardComponent,
