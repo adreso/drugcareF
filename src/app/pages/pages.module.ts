@@ -10,13 +10,15 @@ import { PaisesComponent } from './generales/paises/paises.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormPaisComponent } from './generales/paises/formulario/form-pais.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
     AccountSettingsComponent,
-    PaisesComponent
+    PaisesComponent,
+    FormPaisComponent
   ],
   imports: [
     SharedModule,
