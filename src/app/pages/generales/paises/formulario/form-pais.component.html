@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form #paisForm="ngForm">
+                        <form #paisForm="ngForm" [ngClass]="{'was-validated':paisForm.form.touched}">
                             <div class="modal-body">
                                 <div class="card card-primary">
 
@@ -18,12 +18,15 @@
                                     <!-- form start -->
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="nombrepais">Nombre</label>
-                                            <input #nombre [(ngModel)]="pais.nombre" type="text" name="nombre" class="form-control" id="nombrepais" required placeholder="Ingresar nombre del pais">
+                                            <label for="nombre">Nombre:</label>
+                                            <input #nombre [(ngModel)]="pais.nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre del pais" name="nombre" required minlength="4">
+                                            <div *ngIf="paisForm.form.controls.nombre?.invalid && (paisForm.form.controls.nombre?.dirty || paisForm.form.controls.nombre?.touched)" class="invalid-feedback">Debe ingresar minimo 4 caracteres</div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="indicativo">Indicativo</label>
-                                            <input [(ngModel)]="pais.indicativo" name="indicativo" type="text" class="form-control" id="indicativo" required placeholder="Ingresar indicativo">
+                                            <label for="nombre">Indicativo:</label>
+                                            <input #nombre [(ngModel)]="pais.indicativo" type="text" class="form-control" id="indicativo" placeholder="Ingresa el indicativo" name="indicativo" required minlength="3">
+                                            <div *ngIf="paisForm.form.controls.indicativo?.invalid && (paisForm.form.controls.indicativo?.dirty || paisForm.form.controls.indicativo?.touched)" class="invalid-feedback">
+                                                Debe ingresar minimo 3 caracteres</div>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->

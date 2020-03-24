@@ -32,8 +32,14 @@ export class FormPaisComponent implements OnInit {
 
   }
 
+  mover(form:any){
+
+
+  }
+
+
   guardar(){
-    // console.log(this.pais);
+    // console.log(paisForm.form);
 
     this._paisesService.guardarMedico(this.pais).subscribe(
       resp =>{

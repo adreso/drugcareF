@@ -19,6 +19,7 @@ export class PaisesComponent implements OnInit {
 
   limite='10';
   offset='0';
+  buscar='';
 
   constructor(
     public _paisesService:PaisesService,
@@ -36,13 +37,10 @@ export class PaisesComponent implements OnInit {
 
 
 
-  getPaises(limite='10', offset='0'){
-    this._paisesService.cargarPaises(limite, offset).subscribe(
+  getPaises(limite='10', offset='0', buscar=''){
+    this._paisesService.cargarPaises(limite, offset, buscar).subscribe(
       paises =>{
         this.paises = paises;
-        // console.log(this.paises);
-
-        // console.log(paises.pais);
       }
     );
   }
@@ -57,10 +55,8 @@ export class PaisesComponent implements OnInit {
     let limite=this.limite;
     let offset = (p-1)*(parseInt(limite));
     this.offset=offset.toString();
-    this.getPaises(this.limite, this.offset.toString());
+    this.getPaises(this.limite, this.offset.toString(), this.buscar);
   }
-
-
 
 }
 

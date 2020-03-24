@@ -15,8 +15,8 @@ export class PaisesService {
     public http:HttpClient
   ) { }
 
-  cargarPaises(limite, offset){
-    const headers = new HttpHeaders({'limite':limite, 'offset':offset});
+  cargarPaises(limite, offset, buscar){
+    const headers = new HttpHeaders({'limite':limite, 'offset':offset, 'buscar':buscar});
 
     let url = URL_SERVICIOS + '/api/paises';
     return this.http.get(url, {headers}).pipe(

@@ -26,3 +26,12 @@
 .fadeIn {
     animation-name: fadeIn;
 }
+
+.card-title2 {
+    font-size: 1.5rem !important;
+    margin-top: 5px;
+}
+
+.input-search {
+    width: 160px;
+}
