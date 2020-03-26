@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Usuario } from 'src/app/models/usuario.model';
 import { URL_SERVICIOS } from 'src/app/config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Toast } from './../../config/alertas';
 import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -47,8 +48,11 @@ export class UsuarioService {
         (resp:any)=>{
           this.guardarStorage(resp.id, resp.token);
           return true;
-        }
-      )
+        }),
+      catchError( err =>{
+        Toast.fire({icon:'error', title:err.error.mensaje})
+        return throwError(err);
+      })
     )
     ;
   }

@@ -37,7 +37,8 @@ export class LoginComponent implements OnInit {
     .subscribe(resp => {
       Toast.fire({icon:'success', title:'Ha ingresado correctamente'});
       this.router.navigate(['/dashboard']);
-    });
+    }
+    );
 
     // console.log('console');
     // this.router.navigate(['/dashboard']);

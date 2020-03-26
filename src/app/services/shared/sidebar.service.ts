@@ -20,6 +20,10 @@ export class SidebarService {
         {
           titulo:'Paises',
           url:'/paises'
+        },
+        {
+          titulo:'Config. Permisos',
+          url:'/permisos'
         }
       ]
     }

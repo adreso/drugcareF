@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormPaisComponent } from './generales/paises/formulario/form-pais.component';
+import { PermisosComponent } from './configuracion/permisos/permisos.component';
+import { FormVentanaComponent } from './configuracion/permisos/formulario/form-ventana.component';
+import { AccionesComponent } from './configuracion/permisos/acciones/acciones.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { FormPaisComponent } from './generales/paises/formulario/form-pais.compo
     DashboardComponent,
     AccountSettingsComponent,
     PaisesComponent,
-    FormPaisComponent
+    FormPaisComponent,
+    PermisosComponent,
+    FormVentanaComponent,
+    AccionesComponent
   ],
   imports: [
     SharedModule,

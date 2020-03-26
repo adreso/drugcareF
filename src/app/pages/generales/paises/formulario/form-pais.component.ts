@@ -32,21 +32,13 @@ export class FormPaisComponent implements OnInit {
 
   }
 
-  mover(form:any){
-
-
-  }
-
-
   guardar(){
     // console.log(paisForm.form);
-
     this._paisesService.guardarMedico(this.pais).subscribe(
       resp =>{
         this._modalService.notificarUpload.emit(this.pais);
         this.cerrarModal();
         this.pais=new Paise();
-        Toast.fire({icon:'success', title:'Pais guardado correctamente'})
       }
     );
 
