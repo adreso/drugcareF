@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ventana } from '../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../services/settings/modal.service';
 import { PermisosService } from '../../../services/settings/permisos.service';
+import AbstractDayGridView from '@fullcalendar/daygrid/AbstractDayGridView';
 
 @Component({
   selector: 'app-permisos',
@@ -13,14 +14,18 @@ export class PermisosComponent implements OnInit {
   ventana:Ventana = new Ventana();
   ventanas:Ventana[];
   vetanaSeleccionada:Ventana;
-  totalPermisos:number;
+  totalVentanas:number;
   p:any=1;
+  
+  listo:Ventana=null;
 
   rowSelectedTable:any;
 
   limite='10';
   offset='0';
   buscar='';
+
+  // @ViewChild('Acciones') acciones:Ventana;
 
   constructor(
     public _modalService:ModalService,
@@ -36,7 +41,8 @@ export class PermisosComponent implements OnInit {
   getVentanas(){
     this._permisosService.cargarVentanas(this.limite, this.offset, this.buscar).subscribe(
       ventanas =>{
-        this.ventanas=ventanas;
+        this.totalVentanas=ventanas.total;
+        this.ventanas=ventanas.ventanas;
       }
     )
   }
@@ -54,8 +60,17 @@ export class PermisosComponent implements OnInit {
   }
 
   ventanaAcciones(child:any, ventana:Ventana){
-    console.log(ventana);
-    this.rowSelectedTable=child;
+    // this.acciones=ventana;
+    // console.log(this.acciones);
+    
+    if(ventana){
+      this.listo=ventana;
+    }
+      
+    
+    
+     this.rowSelectedTable=child;
+
   }
 
 }

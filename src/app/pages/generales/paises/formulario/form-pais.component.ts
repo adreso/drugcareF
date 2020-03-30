@@ -3,6 +3,7 @@ import { ModalService } from 'src/app/services/settings/modal.service';
 import { PaisesService } from 'src/app/services/generales/paises.service';
 import { Paise } from 'src/app/models/generales/paises.models';
 import { Toast } from 'src/app/config/alertas';
+import { ToastErrores } from '../../../../config/alertas';
 
 @Component({
   selector: 'app-form-pais',
@@ -18,14 +19,9 @@ export class FormPaisComponent implements OnInit {
   constructor(
     public _modalService:ModalService,
     private _paisesService:PaisesService,
-
-
-    ) {
-
-    }
+  ) {}
 
   ngOnInit(): void {
-
     setTimeout(() => {
       this.focusNombre();
   });
@@ -33,16 +29,16 @@ export class FormPaisComponent implements OnInit {
   }
 
   guardar(){
-    // console.log(paisForm.form);
     this._paisesService.guardarMedico(this.pais).subscribe(
-      resp =>{
+      (pais:any) =>{
         this._modalService.notificarUpload.emit(this.pais);
         this.cerrarModal();
         this.pais=new Paise();
-      }
+        Toast.fire({icon:'success', title:`Pais ${pais.nombre} guardado correctamente`});
+      },
+      err => ToastErrores(err)
     );
-
-    }
+  }
 
     cerrarModal(){
       this._modalService.cerrarModal();

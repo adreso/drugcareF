@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Ventana } from '../../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../../services/settings/modal.service';
 import { PermisosService } from '../../../../services/settings/permisos.service';
-import { Toast } from '../../../../config/alertas';
+import { Toast, ToastErrores } from '../../../../config/alertas';
 
 @Component({
   selector: 'app-form-ventana',
@@ -35,17 +35,16 @@ export class FormVentanaComponent implements OnInit {
   }
 
   guardar(){
-    console.log(this.ventana);
     this._permisoService.guardarVentana(this.ventana).subscribe(
-      resp =>{
+      (ventana:any) =>{  
         this._modalService.notificarUpload.emit(this.ventana);
         this.cerrarModal();
         this.ventana=new Ventana();
-        Toast.fire({icon:'success', title:'Ventana guardada correctamente'});
-      }
-    );
+        Toast.fire({icon:'success', title:`Ventana ${ventana.descripcion} guardada correctamente`});
+      }, 
+        err=>ToastErrores(err)
+      );
   }
-
   focus(){
       this.Field.nativeElement.focus();
   }

@@ -14,6 +14,7 @@ import { FormPaisComponent } from './generales/paises/formulario/form-pais.compo
 import { PermisosComponent } from './configuracion/permisos/permisos.component';
 import { FormVentanaComponent } from './configuracion/permisos/formulario/form-ventana.component';
 import { AccionesComponent } from './configuracion/permisos/acciones/acciones.component';
+import { FormAccioneComponent } from './configuracion/permisos/acciones/formulario/form-accione.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AccionesComponent } from './configuracion/permisos/acciones/acciones.co
     FormPaisComponent,
     PermisosComponent,
     FormVentanaComponent,
-    AccionesComponent
+    AccionesComponent,
+    FormAccioneComponent
   ],
   imports: [
     SharedModule,

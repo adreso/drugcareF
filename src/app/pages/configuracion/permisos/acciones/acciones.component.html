@@ -1,1 +1,58 @@
-<p>acciones works!</p>
+<script>
+    $(function() {
+        $('[data-toggle="popover"]').popover()
+    })
+</script>
+<div class="card animated fadeIn">
+    <div class="card-header  bg-light">
+        <h5 class="card-title card-title2">Acciones (<small>{{totalAcciones}}</small>)</h5>
+        <div class="card-tools">
+            <div class="form-inline my-2 my-lg-0">
+                <input style="width: 100px;" class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarAccion (keyup)="pe=1;buscar=buscarAccion.value; verp(pe)">
+                <a title="Agregar pais" class="btn btn-tool btn-sm btn-success mr-sm-2" data-toggle="modal" (click)="abrirModal(accione)">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0 ">
+
+        <table class="table table-valign-middle table-hover">
+            <thead>
+                <tr>
+                    <!-- <th>Observaciones</th> -->
+                    <th>Accion</th>
+                    <th>Codigo</th>
+                    <!-- <th>Estado</th> -->
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr #rowSelect *ngFor="let accione of acciones | paginate:{id:'accPag',itemsPerPage: limite, currentPage:pe, totalItems: totalAcciones}">
+                    <!-- <tr *ngFor="let accione of acciones" [ngClass]="{'table-danger':!ventana.estado}"> -->
+                    <tr *ngFor="let accione of acciones">
+                        <!-- <td>{{accione.observacion}}</td> -->
+                        <td>{{accione.accion}}</td>
+                        <td>{{accione.codigo}}</td>
+                        <!-- <td>{{accione.estado?'Activo':'Inactivo'}}</td> -->
+                        <td>
+                            <a (click)="abrirModal(accione)" class="text-muted ">
+                                <i class="fas fa-edit" title="Editar"></i>
+                            </a>
+                            &nbsp;
+                            <a (click)="verObservaciones(accione)" class="text-muted " title="observaciones"><i class="fas fa-info"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" *ngIf="acciones?.length==0">No hay registros encontrados</td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+    <nav class="pagination pagination-lg" *ngIf="acciones?.length>0">
+        <ul class="pagination justify-content-end">
+            <pagination-controls id="accPag" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="pe=$event" (click)="verp(pe)"></pagination-controls>
+        </ul>
+    </nav>
+</div>

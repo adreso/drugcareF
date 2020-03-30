@@ -18,3 +18,14 @@ export const ToastErrores = (err)=>{
     Toast.fire({icon:'error', title:element});  
   }
 };
+
+export const swalInfo = (objeto:string, titulo:string, mensaje:string) =>{
+  Swal.fire({
+    title: `<strong>${titulo}</strong>`,
+    icon: 'info',
+    html:objeto,
+    showCloseButton: true,
+    focusConfirm: false,
+    confirmButtonText:`<i class="fa fa-thumbs-up"></i>${mensaje}!`
+  })
+}

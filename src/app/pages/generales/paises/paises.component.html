@@ -3,7 +3,7 @@
 
 <div class="card animated fadeIn">
     <div class="card-header  bg-light">
-        <h5 class="card-title card-title2">Paises (<small>{{_paisesService.totalPaises}}</small>)</h5>
+        <h5 class="card-title card-title2">Paises (<small>{{totalPaises}}</small>)</h5>
         <div class="card-tools">
             <div class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarPais (keyup)="p=1;buscar=buscarPais.value; verp(p)">
@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let pais of paises | paginate:{itemsPerPage: limite, currentPage:p, totalItems: _paisesService.totalPaises}">
+                <tr *ngFor="let pais of paises | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalPaises}">
                     <td>{{pais.nombre}}</td>
                     <td>{{pais.indicativo}}</td>
                     <td>

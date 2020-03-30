@@ -14,7 +14,7 @@ export class PaisesComponent implements OnInit {
   paises:Paise[];
   paisSeleccionado:Paise;
   p:any=1;
-
+  totalPaises:number;
   limite='10';
   offset='0';
   buscar='';
@@ -35,7 +35,10 @@ export class PaisesComponent implements OnInit {
 
   getPaises(){
     this._paisesService.cargarPaises(this.limite, this.offset, this.buscar).subscribe(
-      paises => this.paises = paises
+      paises => {
+        this.totalPaises=paises.total;
+        this.paises = paises.paises;
+      }
       );
   }
 

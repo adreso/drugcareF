@@ -1,10 +1,10 @@
 <app-form-ventana *ngIf="vetanaSeleccionada" [ventana]="vetanaSeleccionada"> </app-form-ventana>
 <div class="row">
     <div class="col-8">
-        <!--Start Tabla permisos-->
+        <!--Start Tabla ventanas-->
         <div class="card animated fadeIn">
             <div class="card-header  bg-light">
-                <h5 class="card-title card-title2">Paises (<small>{{_permisosService.totalVentanas}}</small>)</h5>
+                <h5 class="card-title card-title2">Ventanas (<small>{{totalVentanas}}</small>)</h5>
                 <div class="card-tools">
                     <div class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarventana (keyup)="p=1;buscar=buscarventana.value; verp(p)">
@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr #rowSelect *ngFor="let ventana of ventanas | paginate:{itemsPerPage: limite, currentPage:p, totalItems: _permisosService.totalVentanas}" (click)="ventanaAcciones(rowSelect, ventana)" [ngClass]="{'table-primary':rowSelectedTable==rowSelect, 'table-danger':!ventana.estado}">
+                        <tr #rowSelect *ngFor="let ventana of ventanas | paginate:{id: 'venPag', itemsPerPage: limite, currentPage:p, totalItems: totalVentanas}" (click)="ventanaAcciones(rowSelect, ventana)" [ngClass]="{'table-primary':rowSelectedTable==rowSelect, 'table-danger':!ventana.estado}">
                             <!-- [ngClass]="{'table-primary':vetanaSeleccionada==ventana}"> -->
                             <td>{{ventana.descripcion}}</td>
                             <td>{{ventana.url}}</td>
@@ -46,17 +46,13 @@
             </div>
             <nav class="pagination pagination-lg">
                 <ul class="pagination justify-content-end">
-                    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
+                    <pagination-controls id="venPag" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
                 </ul>
             </nav>
         </div>
-        <!--End Tabla permisos-->
-
-
-
-
+        <!--End Tabla ventanas-->
     </div>
     <div class="col-4">
-        2 of 2
+        <app-acciones [ventana]="listo"></app-acciones>
     </div>
 </div>
