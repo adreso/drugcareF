@@ -23,7 +23,6 @@ export class FormVentanaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.ventana.estado=true;
     setTimeout(() => {
       this.focus();
   });

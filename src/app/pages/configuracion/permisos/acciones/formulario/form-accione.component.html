@@ -1,1 +1,58 @@
-<p>form-accione works!</p>
+<div class="abrir-modal animacion fadeIn" *ngIf="_modalService.modal">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Formulario Ventana</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form #ventanaForm="ngForm" [ngClass]="{'was-validated':ventanaForm.form.touched}">
+                            <div class="modal-body">
+                                <div class="card card-primary">
+
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="observacion">Observacion:</label>
+                                            <input #observacion [(ngModel)]="accione.observacion" type="text" class="form-control" id="observacion" placeholder="Ingresa la observacion de la accione" name="observacion" required minlength="4">
+                                            <div *ngIf="ventanaForm.form.controls.observacion?.invalid && (ventanaForm.form.controls.observacion?.dirty || ventanaForm.form.controls.observacion?.touched)" class="invalid-feedback">Debe ingresar minimo 4 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="accion">Accion:</label>
+                                            <input (keyup.enter)="guardar()" #nombre [(ngModel)]="accione.accion" type="text" class="form-control" id="accion" placeholder="Ingresa la URL" name="accion" required minlength="3">
+                                            <div *ngIf="ventanaForm.form.controls.accion?.invalid && (ventanaForm.form.controls.accion?.dirty || ventanaForm.form.controls.accion?.touched)" class="invalid-feedback">
+                                                Debe ingresar minimo 3 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="codigo">Codigo:</label>
+                                            <input (keyup.enter)="guardar()" #nombre [(ngModel)]="accione.codigo" type="text" class="form-control" id="codigo" placeholder="Ingresa el codigo" name="codigo" required minlength="3">
+                                            <div *ngIf="ventanaForm.form.controls.codigo?.invalid && (ventanaForm.form.controls.codigo?.dirty || ventanaForm.form.controls.codigo?.touched)" class="invalid-feedback">
+                                                Debe ingresar minimo 3 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <select [(ngModel)]="accione.estado" name="estado" id="estado" class="form-control" [value]='true'>
+                                                <option [value]="true" selected>Activo</option>
+                                                <option [value]="false">Inactivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button (click)="guardar()" type="button" class="btn btn-primary" [disabled]="!ventanaForm.form.valid">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

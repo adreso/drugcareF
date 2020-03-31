@@ -24,6 +24,10 @@ export class SidebarService {
         {
           titulo:'Config. Permisos',
           url:'/permisos'
+        },
+        {
+          titulo:'Roles',
+          url:'/roles'
         }
       ]
     }

@@ -1,8 +1,5 @@
-<script>
-    $(function() {
-        $('[data-toggle="popover"]').popover()
-    })
-</script>
+<app-form-accione *ngIf="AccionSeleccionada" [accione]="AccionSeleccionada" [ventana]="ventana"> </app-form-accione>
+
 <div class="card animated fadeIn">
     <div class="card-header  bg-light">
         <h5 class="card-title card-title2">Acciones (<small>{{totalAcciones}}</small>)</h5>

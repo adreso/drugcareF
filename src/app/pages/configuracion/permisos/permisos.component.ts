@@ -60,17 +60,10 @@ export class PermisosComponent implements OnInit {
   }
 
   ventanaAcciones(child:any, ventana:Ventana){
-    // this.acciones=ventana;
-    // console.log(this.acciones);
-    
     if(ventana){
       this.listo=ventana;
     }
-      
-    
-    
      this.rowSelectedTable=child;
-
   }
 
 }

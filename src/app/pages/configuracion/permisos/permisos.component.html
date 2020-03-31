@@ -53,6 +53,6 @@
         <!--End Tabla ventanas-->
     </div>
     <div class="col-4">
-        <app-acciones [ventana]="listo"></app-acciones>
+        <app-acciones *ngIf="listo" [ventana]="listo"></app-acciones>
     </div>
 </div>

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, SimpleChanges, SimpleChange, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Ventana } from '../../../../models/configuraciones/ventanas.models';
 import { Accione } from '../../../../models/configuraciones/acciones.model';
 import { PermisosService } from '../../../../services/settings/permisos.service';
 import { swalInfo } from '../../../../config/alertas';
+import { ModalService } from 'src/app/services/settings/modal.service';
 
 @Component({
   selector: 'app-acciones',
@@ -12,6 +13,7 @@ import { swalInfo } from '../../../../config/alertas';
 export class AccionesComponent implements OnInit {
   
   @Input() ventana:Ventana;
+  
 
   accione:Accione = new Accione();
   acciones:Accione[];
@@ -25,13 +27,14 @@ export class AccionesComponent implements OnInit {
 
   constructor(
     public _permisosService:PermisosService,
-    private cdr: ChangeDetectorRef
+    public _modalService:ModalService
     ) {
     
    }
   ngOnInit(): void {
       
-
+    this.getAcciones();
+    this._modalService.notificarUpload.subscribe(()=>this.getAcciones());
   }
 
   ngOnChanges(): void {
@@ -45,22 +48,21 @@ export class AccionesComponent implements OnInit {
           setTimeout(()=>{
             this.totalAcciones=acciones.total;
             this.acciones=acciones.acciones;
-           })
-          //  this.cdr.detectChanges();
+           });
         }
       );
     }
 }
 abrirModal(accione:Accione){
-
+  this.AccionSeleccionada=accione;
+  this._modalService.abrirModal();
 }
 
-verp(p:any){
+verp(pe:any){
   let limite=this.limite;
-  let offset = (p-1)*(parseInt(limite));
+  let offset = (pe-1)*(parseInt(limite));
   this.offset=offset.toString();
   this.getAcciones();
-  this.cdr.detectChanges();
 }
 
 verObservaciones(acciones:Accione){
