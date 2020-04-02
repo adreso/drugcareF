@@ -33,7 +33,10 @@ export class FormAccioneComponent implements OnInit {
   }
 
   guardar(){
-    this.accione.ventana=this.ventana;
+    // console.log(this.accione);
+    // if(!this.accione.id){
+      this.accione.ventana=this.ventana;
+    // }
     this._permisoService.guardarAccione(this.accione).subscribe(
       (accione:any) =>{  
         this._modalService.notificarUpload.emit(this.accione);

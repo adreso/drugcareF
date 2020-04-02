@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ventana } from '../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../services/settings/modal.service';
 import { PermisosService } from '../../../services/settings/permisos.service';
-import AbstractDayGridView from '@fullcalendar/daygrid/AbstractDayGridView';
+
 
 @Component({
   selector: 'app-permisos',
@@ -24,7 +24,8 @@ export class PermisosComponent implements OnInit {
   limite='10';
   offset='0';
   buscar='';
-
+  
+  
   // @ViewChild('Acciones') acciones:Ventana;
 
   constructor(

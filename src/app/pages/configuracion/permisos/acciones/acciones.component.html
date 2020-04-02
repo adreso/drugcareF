@@ -26,28 +26,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr #rowSelect *ngFor="let accione of acciones | paginate:{id:'accPag',itemsPerPage: limite, currentPage:pe, totalItems: totalAcciones}">
-                    <!-- <tr *ngFor="let accione of acciones" [ngClass]="{'table-danger':!ventana.estado}"> -->
-                    <tr *ngFor="let accione of acciones">
-                        <!-- <td>{{accione.observacion}}</td> -->
-                        <td>{{accione.accion}}</td>
-                        <td>{{accione.codigo}}</td>
-                        <!-- <td>{{accione.estado?'Activo':'Inactivo'}}</td> -->
-                        <td>
-                            <a (click)="abrirModal(accione)" class="text-muted ">
-                                <i class="fas fa-edit" title="Editar"></i>
-                            </a>
-                            &nbsp;
-                            <a (click)="verObservaciones(accione)" class="text-muted " title="observaciones"><i class="fas fa-info"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" *ngIf="acciones?.length==0">No hay registros encontrados</td>
-                    </tr>
+                <tr #rowSelect *ngFor="let accione of acciones | paginate:{id:'accPag',itemsPerPage: limite, currentPage:pe, totalItems: totalAcciones}" [ngClass]="{'table-danger':!accione.estado}">
+                    <!-- <tr *ngFor=" let accione of acciones " [ngClass]="{ 'table-danger':!ventana.estado} "> -->
+                    <!-- <tr *ngFor="let accione of acciones "> -->
+                    <!-- <td>{{accione.observacion}}</td> -->
+                    <td>{{accione.accion}}</td>
+                    <td>{{accione.codigo}}</td>
+                    <!-- <td>{{accione.estado?'Activo':'Inactivo'}}</td> -->
+                    <td>
+                        <a (click)="abrirModal(accione) " class="text-muted ">
+                            <i class="fas fa-edit " title="Editar "></i>
+                        </a>
+                        &nbsp;
+                        <a (click)="verObservaciones(accione) " class="text-muted " title="observaciones "><i class="fas fa-info "></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3 " *ngIf="acciones?.length==0 ">No hay registros encontrados</td>
+                </tr>
             </tbody>
         </table>
     </div>
-    <nav class="pagination pagination-lg" *ngIf="acciones?.length>0">
+    <nav class="pagination pagination-lg " *ngIf="acciones?.length>0">
         <ul class="pagination justify-content-end">
             <pagination-controls id="accPag" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="pe=$event" (click)="verp(pe)"></pagination-controls>
         </ul>

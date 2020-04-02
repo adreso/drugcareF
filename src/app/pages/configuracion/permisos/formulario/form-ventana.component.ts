@@ -3,6 +3,9 @@ import { Ventana } from '../../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../../services/settings/modal.service';
 import { PermisosService } from '../../../../services/settings/permisos.service';
 import { Toast, ToastErrores } from '../../../../config/alertas';
+import { Menu } from '../../../../models/configuraciones/menus.model';
+import { MenusService } from '../../../../services/settings/menus.service';
+
 
 @Component({
   selector: 'app-form-ventana',
@@ -14,10 +17,12 @@ export class FormVentanaComponent implements OnInit {
   @Input() ventana:Ventana;
   @ViewChild("descripcion") Field: ElementRef;
   
+  menus:Menu[];
 
   constructor(
     public _modalService:ModalService,
-    public _permisoService:PermisosService
+    public _permisoService:PermisosService,
+    public _menuService:MenusService
   ) { 
     
   }
@@ -26,6 +31,7 @@ export class FormVentanaComponent implements OnInit {
     setTimeout(() => {
       this.focus();
   });
+  this.cargarMenus();
   }
 
   cerrarModal(){
@@ -44,6 +50,23 @@ export class FormVentanaComponent implements OnInit {
         err=>ToastErrores(err)
       );
   }
+
+  cargarMenus(){
+    this._menuService.cargar('30', '0', '').subscribe(
+      menus =>{
+        this.menus=menus.menus;
+      }
+    )
+  }
+
+  compararMenu(o1: Menu, o2: Menu): boolean {
+    if (o1 === undefined && o2 === undefined) {
+      return true;
+    }
+
+    return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
+  }
+
   focus(){
       this.Field.nativeElement.focus();
   }

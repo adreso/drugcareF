@@ -35,6 +35,18 @@
                                                 <option [value]="false">Inactivo</option>
                                             </select>
                                         </div>
+
+                                        <div class="form-group">
+                                            <label for="region" class="col-form-label col-sm-2">Región</label>
+
+                                            <select [compareWith]="compararMenu" class="form-control" [(ngModel)]="ventana.menu" name="region">
+                                                <option [ngValue]="undefined">--- selecionar un menu ---</option>
+                                                <option *ngFor="let menu of menus" [ngValue]="menu">{{menu.descripcion}}</option>
+                                              </select>
+
+                                        </div>
+
+
                                     </div>
                                     <!-- /.card-body -->
                                 </div>

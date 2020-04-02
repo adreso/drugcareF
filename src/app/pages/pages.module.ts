@@ -15,6 +15,13 @@ import { PermisosComponent } from './configuracion/permisos/permisos.component';
 import { FormVentanaComponent } from './configuracion/permisos/formulario/form-ventana.component';
 import { AccionesComponent } from './configuracion/permisos/acciones/acciones.component';
 import { FormAccioneComponent } from './configuracion/permisos/acciones/formulario/form-accione.component';
+import { PipesModule } from '../pipes/pipes.module';
+import { RolesComponent } from './configuracion/roles/roles.component';
+import { FormRolesComponent } from './configuracion/roles/formulario/form-roles.component';
+import { MenusComponent } from './configuracion/menus/menus.component';
+import { FormMenuComponent } from './configuracion/menus/formulario/form-menu.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +33,12 @@ import { FormAccioneComponent } from './configuracion/permisos/acciones/formular
     PermisosComponent,
     FormVentanaComponent,
     AccionesComponent,
-    FormAccioneComponent
+    FormAccioneComponent,
+    FormRolesComponent,
+    RolesComponent,
+    MenusComponent,
+    FormMenuComponent,
+    
   ],
   imports: [
     SharedModule,
@@ -34,7 +46,9 @@ import { FormAccioneComponent } from './configuracion/permisos/acciones/formular
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    PipesModule,
+    NgbModule
   ],
   exports: [
     DashboardComponent,

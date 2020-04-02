@@ -21,6 +21,7 @@
                         <tr>
                             <th>Descripcion</th>
                             <th>Url</th>
+                            <th>Menu</th>
                             <th>Estado</th>
                             <th>Opciones</th>
                         </tr>
@@ -30,7 +31,9 @@
                             <!-- [ngClass]="{'table-primary':vetanaSeleccionada==ventana}"> -->
                             <td>{{ventana.descripcion}}</td>
                             <td>{{ventana.url}}</td>
-                            <td>{{ventana.estado?'Activo':'Inactivo'}}</td>
+                            <td>{{ventana.menu.descripcion}}</td>
+
+                            <td>{{ventana.estado | estado}}</td>
                             <td>
                                 <a (click)="abrirModal(ventana)" class="text-muted ">
                                     <i class="fas fa-edit" title="Editar"></i>

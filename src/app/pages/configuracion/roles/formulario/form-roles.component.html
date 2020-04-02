@@ -1,0 +1,46 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="_modalService.modal">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Formulario Pais</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form #FormRoles="ngForm" [ngClass]="{'was-validated':FormRoles.form.touched}">
+                            <div class="modal-body">
+                                <div class="card card-primary">
+
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripcion:</label>
+                                            <input #descripcion [(ngModel)]="roles.descripcion" type="text" class="form-control" id="descripcion" placeholder="Ingresa el descripcion del roles" name="descripcion" required minlength="4">
+                                            <div *ngIf="FormRoles.form.controls.descripcion?.invalid && (FormRoles.form.controls.descripcion?.dirty || FormRoles.form.controls.descripcion?.touched)" class="invalid-feedback">Debe ingresar minimo 4 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="estado">Estado</label>
+                                            <select [(ngModel)]="roles.estado" name="estado" id="estado" class="form-control" [value]='true'>
+                                                <option [value]="true" selected>Activo</option>
+                                                <option [value]="false">Inactivo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button (click)="guardar()" type="button" class="btn btn-primary" [disabled]="!FormRoles.form.valid">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

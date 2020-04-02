@@ -23,6 +23,7 @@ export class PermisosService{
   }
 
   guardarAccione(accione:Accione){
+    console.log(accione);
     // accione.ventana.id=ventana.id;
     return guardarGenerico(accione, '/api/acciones', this.http);
   }

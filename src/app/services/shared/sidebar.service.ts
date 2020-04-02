@@ -29,6 +29,11 @@ export class SidebarService {
           titulo:'Roles',
           url:'/roles'
         }
+        ,
+        {
+          titulo:'Menus',
+          url:'/menus'
+        }
       ]
     }
   ]
