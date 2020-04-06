@@ -21,6 +21,7 @@ import { FormRolesComponent } from './configuracion/roles/formulario/form-roles.
 import { MenusComponent } from './configuracion/menus/menus.component';
 import { FormMenuComponent } from './configuracion/menus/formulario/form-menu.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { RolespermisosComponent } from './configuracion/rolespermisos/rolespermisos.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RolesComponent,
     MenusComponent,
     FormMenuComponent,
+    RolespermisosComponent,
     
   ],
   imports: [

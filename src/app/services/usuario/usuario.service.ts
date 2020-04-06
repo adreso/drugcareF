@@ -19,7 +19,7 @@ export class UsuarioService {
     this.cargarStorage();
 
   }
-
+//TODO hay que cambiar esta vaina por uno que controle el tiempo tambien
   estaLogueado(){
     return (this.token.length >5)?true:false;
   }

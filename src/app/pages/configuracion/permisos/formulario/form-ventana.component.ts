@@ -47,7 +47,10 @@ export class FormVentanaComponent implements OnInit {
         this.ventana=new Ventana();
         Toast.fire({icon:'success', title:`Ventana ${ventana.descripcion} guardada correctamente`});
       }, 
-        err=>ToastErrores(err)
+      
+        err=>{
+          ToastErrores(err);
+        }
       );
   }
 

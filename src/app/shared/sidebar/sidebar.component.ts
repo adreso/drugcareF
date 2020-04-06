@@ -9,8 +9,11 @@ import { SidebarService } from '../../services/shared/sidebar.service';
 export class SidebarComponent implements OnInit {
 
   constructor(
+
     public _sidebarService:SidebarService
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit(): void {
   }

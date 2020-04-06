@@ -19,6 +19,7 @@
                 <table class="table table-valign-middle table-hover">
                     <thead>
                         <tr>
+                            <th>Icono</th>
                             <th>Descripcion</th>
                             <th>Url</th>
                             <th>Menu</th>
@@ -28,7 +29,7 @@
                     </thead>
                     <tbody>
                         <tr #rowSelect *ngFor="let ventana of ventanas | paginate:{id: 'venPag', itemsPerPage: limite, currentPage:p, totalItems: totalVentanas}" (click)="ventanaAcciones(rowSelect, ventana)" [ngClass]="{'table-primary':rowSelectedTable==rowSelect, 'table-danger':!ventana.estado}">
-                            <!-- [ngClass]="{'table-primary':vetanaSeleccionada==ventana}"> -->
+                            <td><i [class]="ventana.icono"></i></td>
                             <td>{{ventana.descripcion}}</td>
                             <td>{{ventana.url}}</td>
                             <td>{{ventana.menu.descripcion}}</td>

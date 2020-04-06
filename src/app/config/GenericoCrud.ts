@@ -3,7 +3,13 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+const token = (token) => {
+  return {'x-access-token':token, 'authorization':token}
+}
+
 export const guardarGenerico =(modelo:any, ruta:string, http:HttpClient) =>{
+  // const headers = new HttpHeaders(this.token(tok));
+
     let url = URL_SERVICIOS + ruta;
     if(modelo.id){
       url+='/'+modelo.id;

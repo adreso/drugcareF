@@ -19,11 +19,11 @@ export class PermisosService{
   }
 
   guardarVentana(ventana:Ventana){
+    console.log(ventana);
     return guardarGenerico(ventana, '/api/ventanas', this.http);
   }
 
   guardarAccione(accione:Accione){
-    console.log(accione);
     // accione.ventana.id=ventana.id;
     return guardarGenerico(accione, '/api/acciones', this.http);
   }

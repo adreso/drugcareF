@@ -4,5 +4,6 @@ export class Ventana {
     public descripcion:string;
     public url:string;
     public estado:boolean;
+    public icono:string;
     public menu:Menu;
 }

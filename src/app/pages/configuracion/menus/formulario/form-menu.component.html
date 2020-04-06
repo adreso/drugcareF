@@ -22,6 +22,18 @@
                                             <div *ngIf="FormMenus.form.controls.descripcion?.invalid && (FormMenus.form.controls.descripcion?.dirty || FormMenus.form.controls.descripcion?.touched)" class="invalid-feedback">Debe ingresar minimo 4 caracteres</div>
                                         </div>
                                         <div class="form-group">
+                                            <label for="icono">icono:</label>
+                                            <input (keyup.enter)="guardar()" [(ngModel)]="menus.icono" type="text" class="form-control" id="icono" placeholder="Ingresa el icono" name="icono" required minlength="3">
+                                            <div *ngIf="FormMenus.form.controls.icono?.invalid && (FormMenus.form.controls.icono?.dirty || FormMenus.form.controls.icono?.touched)" class="invalid-feedback">
+                                                Debe ingresar minimo 3 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="orden">Orden:</label>
+                                            <input (keyup.enter)="guardar()" [(ngModel)]="menus.orden" type="number" class="form-control" id="orden" placeholder="Ingresa el orden" name="orden" required minlength="3">
+                                            <div *ngIf="FormMenus.form.controls.orden?.invalid && (FormMenus.form.controls.orden?.dirty || FormMenus.form.controls.orden?.touched)" class="invalid-feedback">
+                                                Debe ingresar minimo 3 caracteres</div>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="estado">Estado</label>
                                             <select [(ngModel)]="menus.estado" name="estado" id="estado" class="form-control" [value]='true'>
                                                 <option [value]="true" selected>Activo</option>

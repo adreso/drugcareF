@@ -18,14 +18,18 @@
         <table class="table table-striped table-valign-middle ">
             <thead>
                 <tr>
+                    <th>Icono</th>
                     <th>Descripcion</th>
+                    <th>Orden</th>
                     <th>Estado</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let menu of menus | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalMenus}" [ngClass]="{'table-danger':!menu.estado}">
+                    <td><i [class]="menu.icono" style="font-size: 3rem;"></i></td>
                     <td>{{menu.descripcion}}</td>
+                    <td>{{menu.orden}}</td>
                     <td>{{menu.estado | estado}}</td>
                     <td>
                         <a (click)="abrirModal(menu)" class="text-muted ">

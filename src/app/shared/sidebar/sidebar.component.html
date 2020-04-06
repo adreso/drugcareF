@@ -22,19 +22,19 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li *ngFor="let menu of _sidebarService.menu" class="nav-item has-treeview">
-                    <a href="#" class="nav-link active">
-                        <i [class]="menu.icono"></i>
+                    <a href="#" class="nav-link" routerLinkActive="active">
+                        <i [class]="menu.icono"></i>&nbsp;
                         <p>
-                            {{menu.titulo}}
+                            {{menu.descripcion}}
                             <i class="right fas fa-angle-left"></i>
-                            <span class="badge badge-info right">{{menu.submenu.length}}</span>
+                            <span class="badge badge-info right">{{menu.ventanas.length}}</span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li *ngFor="let item of menu.submenu" class="nav-item">
+                        <li *ngFor="let item of menu.ventanas" class="nav-item">
                             <a routerLinkActive="active" [routerLink]="[item.url]" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>{{item.titulo}}</p>
+                                <i [class]="item.icono"></i>&nbsp;
+                                <p> {{item.descripcion}}</p>
                             </a>
                         </li>
 

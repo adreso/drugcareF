@@ -7,6 +7,7 @@ import { AuthGuard } from '../services/guards/auth.guard';
 import { PermisosComponent } from './configuracion/permisos/permisos.component';
 import { RolesComponent } from './configuracion/roles/roles.component';
 import { MenusComponent } from './configuracion/menus/menus.component';
+import { RolespermisosComponent } from './configuracion/rolespermisos/rolespermisos.component';
 
 const pagesRoutes: Routes = [
   {
@@ -21,6 +22,7 @@ const pagesRoutes: Routes = [
       { path: 'permisos', component: PermisosComponent, data:{titulo:'Configuración de permisos'} },
       { path: 'roles', component: RolesComponent, data:{titulo:'Configuración de roles'} },
       { path: 'menus', component: MenusComponent, data:{titulo:'Configuración de menu'} },
+      { path: 'rolespermisos', component: RolespermisosComponent, data:{titulo:'Asignación de permisos a los roles'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

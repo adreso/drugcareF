@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Ventana } from '../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../services/settings/modal.service';
 import { PermisosService } from '../../../services/settings/permisos.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -30,13 +31,14 @@ export class PermisosComponent implements OnInit {
 
   constructor(
     public _modalService:ModalService,
-    public _permisosService:PermisosService
+    public _permisosService:PermisosService,
+    private _http: HttpClient
   ) { 
   }
 
   ngOnInit(): void {
     this.getVentanas();
-    this._modalService.notificarUpload.subscribe(()=>this.getVentanas());
+    this._modalService.notificarUpload.subscribe(()=>this.getVentanas());    
   }
 
   getVentanas(){

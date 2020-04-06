@@ -10,7 +10,11 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './login/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from "./interceptors";
 
+// import {  } from './_helper/auth-helpers.interceptor';
+
+// import { , HttpClientModule } from '@angular/common/http';
 
 
 
@@ -29,7 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

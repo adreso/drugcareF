@@ -13,9 +13,13 @@ export const Toast = Swal.mixin({
 });
 
 export const ToastErrores = (err)=>{
-  for (let index = 0; index < err.error.message.length; index++) {
-    const element = err.error.message[index].message;
-    Toast.fire({icon:'error', title:element});  
+  if(Array.isArray(err.error.message)){
+    for (let index = 0; index < err.error.message.length; index++) {
+      const element = err.error.message[index].message;
+      Toast.fire({icon:'error', title:element});  
+    }
+  }else{
+    Toast.fire({icon:'error', title:err.error.message});
   }
 };
 
