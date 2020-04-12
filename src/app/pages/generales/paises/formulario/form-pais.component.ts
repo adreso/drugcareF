@@ -29,7 +29,7 @@ export class FormPaisComponent implements OnInit {
   }
 
   guardar(){
-    this._paisesService.guardarMedico(this.pais).subscribe(
+    this._paisesService.guardar(this.pais).subscribe(
       (pais:any) =>{
         this._modalService.notificarUpload.emit(this.pais);
         this.cerrarModal();

@@ -17,7 +17,7 @@ export class PaisesService {
     return cargarGenerico(limite, offset, buscar, this.http,'/api/paises');
   }
 
-  guardarMedico(pais:Paise){
+  guardar(pais:Paise){
     return guardarGenerico(pais, '/api/paises', this.http);
   }
 

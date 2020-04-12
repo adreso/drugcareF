@@ -1,0 +1,103 @@
+<div class="row">
+    <div class="col-8">
+
+
+        <div class="card animated fadeIn">
+            <div class="card-header  bg-light">
+                <h5 class="card-title card-title2">Departamentos (<small>{{totalDepartamentos}}</small>)</h5>
+                <div class="card-tools">
+                    <div class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarDepartamento (keyup)="p=1;buscar=buscarDepartamento.value; verp(p)">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0 ">
+                <table class="table table-striped table-valign-middle ">
+                    <thead>
+                        <tr>
+                            <th>Pais</th>
+                            <th>Indicativo</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let departament of departamentos | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalDepartamentos}">
+                            <td>{{departament.nombre}}</td>
+                            <td>{{departament.indicador}}</td>
+                            <td>
+                                <a class="text-muted ">
+                                    <i class="fas fa-edit" title="Editar" (click)="setDepartamento(departament)"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" *ngIf="departamentos?.length==0">No hay registros encontrados</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <nav class="pagination pagination-lg">
+                <ul class="pagination justify-content-end">
+                    <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card animated fadeIn">
+            <div class="card-header  bg-light">
+                <h5 class="card-title card-title2">{{departamento.id>0?'Editar':'Agregar'}}</h5>
+                <div class="card-tools">
+                    <div class="form-inline my-2 my-lg-0">
+                        <a title="Nuevo" class="btn-sm btn-success" (click)="departamentoForm.resetForm()">
+                            <i class=" fas fa-plus "></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form #departamentoForm="ngForm" [ngClass]="{'was-validated':departamentoForm.form.touched}">
+
+                    <div class="card card-primary">
+
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="nombre">nombre:</label>
+                                <input #nombre [(ngModel)]="departamento.nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa la nombre de la departamento" name="nombre" required minlength="4">
+                                <div *ngIf="departamentoForm.form.controls.nombre?.invalid && (departamentoForm.form.controls.nombre?.dirty || departamentoForm.form.controls.nombre?.touched)" class="invalid-feedback">Debe ingresar minimo 4 caracteres</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="indicador">Indicador:</label>
+                                <input #nombre [(ngModel)]="departamento.indicador" type="text" class="form-control" id="indicador" placeholder="Ingresa el Indicador" name="indicador" required minlength="3">
+                                <div *ngIf="departamentoForm.form.controls.indicador?.invalid && (departamentoForm.form.controls.indicador?.dirty || departamentoForm.form.controls.indicador?.touched)" class="invalid-feedback">
+                                    Debe ingresar minimo 3 caracteres</div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="pais" class="col-form-label col-sm-2">Pais:</label>
+
+                                <select [compareWith]="compararDepartamento" #comboPais class="form-control" [(ngModel)]="departamento.paise" name="pais">
+                                    
+                                    <option *ngFor="let pais of paises" [ngValue]="pais">{{pais.nombre}}</option>
+                                  </select>
+
+                            </div>
+
+                        </div>
+                        <!-- /.card-body -->
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button (click)="guardar(departamentoForm);" type="button" class="btn btn-primary" [disabled]="!departamentoForm.form.valid || !comboPais.value">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

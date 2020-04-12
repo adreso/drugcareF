@@ -58,6 +58,7 @@ export class PermisosComponent implements OnInit {
   }
 
   abrirModal(ventana:Ventana){
+    console.log(ventana);
     this.vetanaSeleccionada=ventana;
     this._modalService.abrirModal();
   }

@@ -19,7 +19,6 @@ export class PermisosService{
   }
 
   guardarVentana(ventana:Ventana){
-    console.log(ventana);
     return guardarGenerico(ventana, '/api/ventanas', this.http);
   }
 
