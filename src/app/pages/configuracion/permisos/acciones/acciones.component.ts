@@ -4,6 +4,7 @@ import { Accione } from '../../../../models/configuraciones/acciones.model';
 import { PermisosService } from '../../../../services/settings/permisos.service';
 import { swalInfo } from '../../../../config/alertas';
 import { ModalService } from 'src/app/services/settings/modal.service';
+import { LIMITE } from '../../../../config/config';
 
 @Component({
   selector: 'app-acciones',
@@ -21,7 +22,7 @@ export class AccionesComponent implements OnInit {
   totalAcciones:number;
   pe:any=1;
 
-  limite='10';
+  limite=LIMITE;
   offset='0';
   buscar='';
 

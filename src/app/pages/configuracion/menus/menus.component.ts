@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/settings/modal.service';
 import { MenusService } from '../../../services/settings/menus.service';
 import { Menu } from '../../../models/configuraciones/menus.model';
+import { LIMITE } from '../../../config/config';
 
 @Component({
   selector: 'app-menus',
@@ -15,7 +16,7 @@ export class MenusComponent implements OnInit {
   menuSeleccionado:Menu;
   p:any=1;
   totalMenus:number;
-  limite='10';
+  limite=LIMITE;
   offset='0';
   buscar='';
 

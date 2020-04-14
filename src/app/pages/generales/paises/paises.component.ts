@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PaisesService } from 'src/app/services/generales/paises.service';
 import {Paise} from './../../../models/generales/paises.models';
 import { ModalService } from 'src/app/services/settings/modal.service';
+import { LIMITE } from '../../../config/config';
 
 @Component({
   selector: 'app-paises',
@@ -15,7 +16,7 @@ export class PaisesComponent implements OnInit {
   paisSeleccionado:Paise;
   p:any=1;
   totalPaises:number;
-  limite='10';
+  limite=LIMITE;
   offset='0';
   buscar='';
 

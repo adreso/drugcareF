@@ -5,6 +5,7 @@ import { ModalService } from 'src/app/services/settings/modal.service';
 import { Toast, ToastErrores } from '../../../config/alertas';
 import { PaisesService } from '../../../services/generales/paises.service';
 import { Paise } from '../../../models/generales/paises.models';
+import { LIMITE } from '../../../config/config';
 
 @Component({
   selector: 'app-departamentos',
@@ -18,7 +19,7 @@ export class DepartamentosComponent implements OnInit {
   departamentoSeleccionado:Departamento;
   p:any=1;
   totalDepartamentos:number;
-  limite='10';
+  limite=LIMITE;
   offset='0';
   buscar='';
 

@@ -3,6 +3,7 @@ import { Ventana } from '../../../models/configuraciones/ventanas.models';
 import { ModalService } from '../../../services/settings/modal.service';
 import { PermisosService } from '../../../services/settings/permisos.service';
 import { HttpClient } from '@angular/common/http';
+import { LIMITE } from '../../../config/config';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class PermisosComponent implements OnInit {
 
   rowSelectedTable:any;
 
-  limite='10';
+  limite=LIMITE;
   offset='0';
   buscar='';
   
