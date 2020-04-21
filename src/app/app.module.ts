@@ -8,21 +8,13 @@ import { PagesModule } from './pages/pages.module';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './login/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from "./interceptors";
-
-// import {  } from './_helper/auth-helpers.interceptor';
-
-// import { , HttpClientModule } from '@angular/common/http';
-
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

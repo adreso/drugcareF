@@ -1,5 +1,5 @@
 export class Role {
-    public id: number;
-    public descripcion:string;
-    public estado:boolean;
+    public id: number=null;
+    public descripcion:string='';
+    public estado:boolean=true;
 }

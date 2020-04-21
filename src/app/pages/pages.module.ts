@@ -24,6 +24,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { RolespermisosComponent } from './configuracion/rolespermisos/rolespermisos.component';
 import { DepartamentosComponent } from './generales/departamentos/departamentos.component';
 import { CiudadesComponent } from './generales/ciudades/ciudades.component';
+import { UsuariosComponent } from './generales/usuarios/usuarios.component';
+import { ButtonErrorValidatorComponent } from './shared/button-error-validator/button-error-validator.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 
 @NgModule({
@@ -44,6 +47,8 @@ import { CiudadesComponent } from './generales/ciudades/ciudades.component';
     RolespermisosComponent,
     DepartamentosComponent,
     CiudadesComponent,
+    UsuariosComponent,
+    ButtonErrorValidatorComponent,
     
   ],
   imports: [
@@ -51,7 +56,8 @@ import { CiudadesComponent } from './generales/ciudades/ciudades.component';
     PAGES_ROUTES,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
+    RxReactiveFormsModule,
     HttpClientModule,
     PipesModule,
     NgbModule

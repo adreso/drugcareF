@@ -10,6 +10,7 @@ import { MenusComponent } from './configuracion/menus/menus.component';
 import { RolespermisosComponent } from './configuracion/rolespermisos/rolespermisos.component';
 import { DepartamentosComponent } from './generales/departamentos/departamentos.component';
 import { CiudadesComponent } from './generales/ciudades/ciudades.component';
+import { UsuariosComponent } from './generales/usuarios/usuarios.component';
 
 const pagesRoutes: Routes = [
   {
@@ -27,6 +28,7 @@ const pagesRoutes: Routes = [
       { path: 'rolespermisos', component: RolespermisosComponent, data:{titulo:'Asignación de permisos a los roles'} },
       { path: 'departamentos', component: DepartamentosComponent, data:{titulo:'Departamentos'} },
       { path: 'ciudades', component: CiudadesComponent, data:{titulo:'Ciudades'} },
+      { path: 'usuarios', component: UsuariosComponent, data:{titulo:'Usuarios'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   recuerdame:boolean=false;
   usuario:string;
+
+  user:Usuario=new Usuario();
   constructor(
     private router:Router,
     private _usuarioService:UsuarioService
@@ -30,10 +32,10 @@ export class LoginComponent implements OnInit {
     if(forma.invalid){
       return;
     }
-
-    let usuario= new Usuario(forma.value.usuario, forma.value.password, 1);
-
-    this._usuarioService.login(usuario, forma.value.recuerdame)
+    this.user.usuario=forma.value.usuario;
+    this.user.password=forma.value.password;
+    
+    this._usuarioService.login(this.user, forma.value.recuerdame)
     .subscribe(resp => {
       Toast.fire({icon:'success', title:'Ha ingresado correctamente'});
       this.router.navigate(['/dashboard']);

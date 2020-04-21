@@ -38,6 +38,7 @@ export class CiudadesComponent implements OnInit {
   // fin combo Typeahead
 
   ciudade:Ciudade = new Ciudade();
+
   ciudades:Ciudade[];
   ciudadeSeleccionado:Ciudade;
   p:any=1;
@@ -92,6 +93,7 @@ export class CiudadesComponent implements OnInit {
         Toast.fire({icon:'success', title:`Ciudad ${this.ciudade.nombre} guardado correctamente`});
           
           this.ciudade=new Ciudade();
+          
           this.getCiudades();
           form.reset();
       },

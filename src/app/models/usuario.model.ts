@@ -1,10 +1,12 @@
+import { Tercero } from './generales/terceros.models';
+import { Role } from './configuraciones/roles.model';
 export class Usuario {
-  constructor(
-    public usuario: string,
-    public password: string,
-    public role: number,
-    public id?: number
-  ){
+  
+    public usuario: string ='';
+    public password: string='';
+    public role: Role=new Role();
+    public id: number=null;
+    public tercero:Tercero=new Tercero();
+  
 
-  }
 }
