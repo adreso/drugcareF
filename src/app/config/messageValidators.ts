@@ -1,4 +1,5 @@
 import { ReactiveFormConfig } from "@rxweb/reactive-form-validators";
+import { FormGroup, FormControl } from '@angular/forms';
 
 export const configMessagesValidator = () =>{
   ReactiveFormConfig.set({
@@ -15,3 +16,42 @@ export const configMessagesValidator = () =>{
     }
   });
 }
+
+
+export const showValidationMsg = (formGroup: FormGroup) => {  
+  for (const key in formGroup.controls) {
+      if (formGroup.controls.hasOwnProperty(key)) {
+          const control: FormControl = <FormControl>formGroup.controls[key];
+          if (Object.keys(control).includes('controls')) {
+              const formGroupChild: FormGroup = <FormGroup>formGroup.controls[key];
+              showValidationMsg(formGroupChild);
+          }
+          control.markAsTouched();
+      }
+  }
+}
+
+export const resetForm = (formGroup:FormGroup) =>{
+  
+    for (const key in formGroup.controls) {
+      if (formGroup.controls.hasOwnProperty(key)) {
+          const control: FormControl = <FormControl>formGroup.controls[key];
+          if (Object.keys(control).includes('controls')) {
+              const formGroupChild: FormGroup = <FormGroup>formGroup.controls[key];
+              resetForm(formGroupChild);
+          }
+          control.setErrors(null);
+      }
+  
+  }
+  
+  
+}
+
+// export const resetForm = (form: FormGroup) => {
+//   form.reset();
+//   Object.keys(form.controls).forEach(key => {
+//     form.get(key).setErrors(null);
+    
+//   });
+// }

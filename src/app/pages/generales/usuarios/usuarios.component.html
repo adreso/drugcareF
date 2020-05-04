@@ -13,18 +13,22 @@
                 <table class="table table-striped table-valign-middle ">
                     <thead>
                         <tr>
-                            <th>Ciudad</th>
-                            <th>Departamento</th>
-                            <th>Opciones</th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Role</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let usuario of usuarios | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalUsuarios}">
-                            <td>{{usuario.nombre}}</td>
-                            <td>{{usuario.departamento.nombre}}</td>
+                            <td>{{usuario.usuario}}</td>
+                            <td>{{usuario.tercero.pnombre}} {{usuario.tercero.snombre}} {{usuario.tercero.papellido}} {{usuario.tercero.sapellido}}</td>
+                            <td>{{usuario.role.descripcion}}</td>
+
                             <td>
                                 <a class="text-muted ">
-                                    <i class="fas fa-edit" title="Editar" (click)="setUsuario(usuario)"></i>
+                                    <i class="fas fa-edit" title="Editar" (click)="patchvalue(usuario)"></i>
+                                    <!-- <i class="fas fa-edit" title="Editar" (click)="setUsuario(usuario)"></i> -->
                                 </a>
                             </td>
                         </tr>
@@ -46,12 +50,17 @@
     <div class="col-6">
         <div class="card animated fadeIn">
             <div class="card-header  bg-light">
-                <h5 class="card-title card-title2">Crear usuario</h5>
+                <h5 class="card-title card-title2">{{usuario?.id>0?'Editar usuario':'Crear usuario'}}</h5>
+                <div class="card-tools">
+                    <div class="form-inline my-2 my-lg-0">
+                        <a title="Nuevo" class="btn-sm btn-success" (click)="resetearForm()">
+                            <i class=" fas fa-plus "></i>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <form novalidate [formGroup]="usuarioForm" (ngSubmit)="guardar()" #userForm="ngForm">
-                    <!-- <form novalidate class="needs-validation" autocomplete="off" [formGroup]="usuarioForm" (ngSubmit)="usuarioForm.valid && guardar()"> -->
-
                     <div class="card card-primary" formGroupName="tercero">
                         <div class="card-header">
                             Datos básicos
@@ -62,9 +71,10 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="identificacion">Identificación</span>
                                 </div>
-                                <input formControlName="identificacion" type="text" class="form-control" aria-describedby="identificacion" id="identificacion" placeholder="Ingresa la identificacion del usuario" name="nombre">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.identificacion').touched || usuarioForm.get('tercero.identificacion').dirty || userForm.submitted) && usuarioForm.get('tercero.identificacion').errors">
+                                <input #identificacion formControlName="identificacion" type="text" class="form-control" aria-describedby="identificacion" id="identificacion" placeholder="Ingresa la identificacion del usuario" name="nombre">
+                                <div class="input-group-append" *ngIf="(!identificacionEncontrada ) || (usuarioForm.get('tercero.identificacion').touched || usuarioForm.get('tercero.identificacion').dirty ) && usuarioForm.get('tercero.identificacion').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.identificacion')['errorMessage']" error="{{usuarioForm.get('tercero.identificacion')['errorMessage']}}"></app-button-error-validator>
+                                    <app-button-error-validator *ngIf="!identificacionEncontrada" error="Este usuario ya existe {{usuarioPrev | json}} "></app-button-error-validator>
                                 </div>
                             </div>
 
@@ -82,7 +92,7 @@
                                 </div>
                                 <input formControlName="pnombre" type="text" class="form-control" aria-describedby="pnombre" id="pnombre" placeholder="Ingrese el primer nombre" name="pnombre">
 
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.pnombre').touched || usuarioForm.get('tercero.pnombre').dirty || userForm.submitted) && usuarioForm.get('tercero.pnombre').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.pnombre').touched || usuarioForm.get('tercero.pnombre').dirty ) && usuarioForm.get('tercero.pnombre').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.pnombre')['errorMessage']" error="{{usuarioForm.get('tercero.pnombre')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -91,7 +101,7 @@
                                     <span class="input-group-text" id="snombre">Segundo nombre</span>
                                 </div>
                                 <input formControlName="snombre" class="form-control" type="text" name="snombre" placeholder="Ingrese el segundo nombre" aria-label="Ingrese el segundo nombre" aria-describedby="snombre">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.snombre').touched || usuarioForm.get('tercero.snombre').dirty || userForm.submitted) && usuarioForm.get('tercero.snombre').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.snombre').touched || usuarioForm.get('tercero.snombre').dirty ) && usuarioForm.get('tercero.snombre').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.snombre')['errorMessage']" error="{{usuarioForm.get('tercero.snombre')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -100,7 +110,7 @@
                                     <span class="input-group-text" id="papellido">Primer Apellido</span>
                                 </div>
                                 <input formControlName="papellido" class="form-control" type="text" name="papellido" placeholder="Ingrese el primer apellido" aria-label="Ingrese el primer apellido" aria-describedby="papellido">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.papellido').touched || usuarioForm.get('tercero.papellido').dirty || userForm.submitted) && usuarioForm.get('tercero.papellido').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.papellido').touched || usuarioForm.get('tercero.papellido').dirty ) && usuarioForm.get('tercero.papellido').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.papellido')['errorMessage']" error="{{usuarioForm.get('tercero.papellido')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -109,7 +119,7 @@
                                     <span class="input-group-text" id="sapellido">Segundo apellido</span>
                                 </div>
                                 <input formControlName="sapellido" class="form-control" type="text" name="sapellido" placeholder="Ingrese el segundo apellido" aria-label="Ingrese el segundo apellido" aria-describedby="sapellido">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.sapellido').touched || usuarioForm.get('tercero.sapellido').dirty || userForm.submitted) && usuarioForm.get('tercero.sapellido').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.sapellido').touched || usuarioForm.get('tercero.sapellido').dirty ) && usuarioForm.get('tercero.sapellido').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.sapellido')['errorMessage']" error="{{usuarioForm.get('tercero.sapellido')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -120,7 +130,7 @@
                                 <select formControlName="sexo" class="form-control" aria-describedby="sexo" id="sexi" name="sexo">
                                     <option *ngFor="let key of keySexo" [value]="key">{{key}}</option>
                                 </select>
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.sexo').touched || usuarioForm.get('tercero.sexo').dirty || userForm.submitted) && usuarioForm.get('tercero.sexo').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.sexo').touched || usuarioForm.get('tercero.sexo').dirty ) && usuarioForm.get('tercero.sexo').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.sexo')['errorMessage']" error="{{usuarioForm.get('tercero.sexo')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -128,21 +138,22 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="fechanacimiento">Fecha de nacimiento</span>
                                 </div>
-                                <!-- <input formControlName="fechanacimiento" class="form-control" placeholder="yyyy-mm-dd" name="fechanacimiento" ngbDatepicker #d="ngbDatepicker" aria-describedby="fechanacimiento"> -->
                                 <input formControlName="fechanacimiento" class="form-control" name="fechanacimiento" type="date">
                                 <div class=" input-group-append ">
-                                    <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.fechanacimiento').touched || usuarioForm.get('tercero.fechanacimiento').dirty || userForm.submitted) && usuarioForm.get('tercero.fechanacimiento').errors">
+                                    <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.fechanacimiento').touched || usuarioForm.get('tercero.fechanacimiento').dirty ) && usuarioForm.get('tercero.fechanacimiento').errors">
                                         <app-button-error-validator *ngIf="usuarioForm.get('tercero.fechanacimiento')['errorMessage']" error="{{usuarioForm.get('tercero.fechanacimiento')['errorMessage']}}"></app-button-error-validator>
                                     </div>
-                                    <!-- <button class="btn btn-outline-secondary " (click)="d.toggle() " type="button "><i class="fas fa-calendar-alt "></i></button> -->
+
                                 </div>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="direccion">Dirección</span>
                                 </div>
+
                                 <input formControlName="direccion" class="form-control" type="text" name="direccion" placeholder="Ingrese la dirección" aria-label="Ingrese la dirección" aria-describedby="direccion">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.direccion').touched || usuarioForm.get('tercero.direccion').dirty || userForm.submitted) && usuarioForm.get('tercero.direccion').errors">
+
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.direccion').touched || usuarioForm.get('tercero.direccion').dirty ) && usuarioForm.get('tercero.direccion').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.direccion')['errorMessage']" error="{{usuarioForm.get('tercero.direccion')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -151,7 +162,7 @@
                                     <span class="input-group-text" id="Telefono">Telefono</span>
                                 </div>
                                 <input formControlName="telefono" class="form-control" type="text" name="telefono" placeholder="Ingrese el número telefonico" aria-label="Ingrese el número telefonico" aria-describedby="Telefono">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.telefono').touched || usuarioForm.get('tercero.telefono').dirty || userForm.submitted) && usuarioForm.get('tercero.telefono').errors">
+                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.telefono').touched || usuarioForm.get('tercero.telefono').dirty ) && usuarioForm.get('tercero.telefono').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.telefono')['errorMessage']" error="{{usuarioForm.get('tercero.telefono')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
@@ -160,26 +171,21 @@
                                     <span class="input-group-text" id="email">Email</span>
                                 </div>
                                 <input formControlName="email" class="form-control" type="text" name="email" placeholder="Ingrese el Email" aria-label="Ingrese el Email" aria-describedby="email">
-                                <div class="input-group-append" *ngIf="(usuarioForm.get('tercero.email').touched || usuarioForm.get('tercero.email').dirty || userForm.submitted) && usuarioForm.get('tercero.email').errors">
+                                <div class="input-group-append" *ngIf="(!emailEncontrado ) || (usuarioForm.get('tercero.email').touched || usuarioForm.get('tercero.email').dirty ) && usuarioForm.get('tercero.email').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('tercero.email')['errorMessage']" error="{{usuarioForm.get('tercero.email')['errorMessage']}}"></app-button-error-validator>
+                                    <app-button-error-validator *ngIf="!emailEncontrado" error="Este email ya existe {{usuarioPrev | json}} "></app-button-error-validator>
                                 </div>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="foto">Imagen</span>
-                                    <div class="input-group-prepend" *ngIf="(usuarioForm.get('tercero.foto').touched || usuarioForm.get('tercero.foto').dirty || userForm.submitted) && usuarioForm.get('tercero.foto').errors">
+                                    <div class="input-group-prepend" *ngIf="(usuarioForm.get('tercero.foto').touched || usuarioForm.get('tercero.foto').dirty ) && usuarioForm.get('tercero.foto').errors">
                                         <app-button-error-validator *ngIf="usuarioForm.get('tercero.foto')['errorMessage']" error="{{usuarioForm.get('tercero.foto')['errorMessage']}}"></app-button-error-validator>
                                     </div>
                                 </div>
                                 <div class="custom-file">
-                                    <!-- <input formControlName="foto" type="file" class="custom-file-input" id="foto" (change)="onFileChange($event)"> -->
                                     <input formControlName="foto" type="file" class="custom-file-input" id="foto">
-
                                     <label class="custom-file-label" for="foto">Seleccione una imagen</label>
-
-
-
-
                                 </div>
                             </div>
                             <div class="input-group">
@@ -203,8 +209,9 @@
                                     <span class="input-group-text" id="usuario">Usuario</span>
                                 </div>
                                 <input formControlName="usuario" class="form-control" type="text" name="usuario" placeholder="Ingrese el nombre de usuario" aria-label="Ingrese el nombre de usuario" aria-describedby="usuario">
-                                <div class="input-group-prepend" *ngIf="(usuarioForm.get('usuario').touched || usuarioForm.get('usuario').dirty || userForm.submitted) && usuarioForm.get('usuario').errors">
+                                <div class="input-group-prepend" *ngIf="(!usuarioEncontrado ) || (usuarioForm.get('usuario').touched || usuarioForm.get('usuario').dirty ) && usuarioForm.get('usuario').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('usuario')['errorMessage']" error="{{usuarioForm.get('usuario')['errorMessage']}}"></app-button-error-validator>
+                                    <app-button-error-validator *ngIf="!usuarioEncontrado" error="Este usuario ya existe {{usuarioPrev | json}} "></app-button-error-validator>
                                 </div>
                             </div>
                             <div class="input-group">
@@ -212,8 +219,18 @@
                                     <span class="input-group-text" id="password">Password</span>
                                 </div>
                                 <input formControlName="password" class="form-control" type="password" name="password" placeholder="Ingrese el password" aria-label="Ingrese el password" aria-describedby=" password ">
-                                <div class="input-group-prepend" *ngIf="(usuarioForm.get('password').touched || usuarioForm.get('password').dirty || userForm.submitted) && usuarioForm.get('password').errors">
+                                <div class="input-group-prepend" *ngIf="(usuarioForm.get('password').touched || usuarioForm.get('password').dirty ) && usuarioForm.get('password').errors">
                                     <app-button-error-validator *ngIf="usuarioForm.get('password')['errorMessage']" error="{{usuarioForm.get('password')['errorMessage']}}"></app-button-error-validator>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label for="role" class="input-group-text">Rol:</label>
+                                </div>
+                                <input [formControlName]="'role'" for="role" editable="false" placeholder="Seleccione un rol" typeahead-editable="false" class="form-control" type="search" #instance="ngbTypeahead" #buscarRole name="role" [ngbTypeahead]="search" [inputFormatter]="formatter"
+                                    [resultFormatter]="formatter" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" (keyup)="getRoles(buscarRole.value)">
+                                <div class="input-group-prepend" *ngIf="(usuarioForm.get('role').touched || usuarioForm.get('role').dirty ) && usuarioForm.get('role').errors">
+                                    <app-button-error-validator *ngIf="usuarioForm.get('role')['errorMessage']" error="{{usuarioForm.get('role')['errorMessage']}}"></app-button-error-validator>
                                 </div>
                             </div>
                         </div>

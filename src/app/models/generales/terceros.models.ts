@@ -14,4 +14,10 @@ export class Tercero {
     email:string='';
     foto:string='';
     estado:boolean=true;
+
+}
+
+export const fullName = (tercero:Tercero) => {
+    return tercero.pnombre;
+    // return tercero.pnombre +' ' + tercero.snombre || null + ' ' + tercero.papellido + tercero.sapellido || null;
 }
