@@ -1,0 +1,40 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="_modalService.modal">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Perfil Usuario</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="card card-primary card-outline">
+                            <div class="card-body box-profile">
+                                <div class="text-center">
+                                    <i class="far fa-user-circle" style="font-size: 80px;"></i>
+                                </div>
+
+                                <h3 class="profile-username text-center">
+                                    <i class="fas" [ngClass]='{"fa-venus": usuario.tercero.sexo=="FEMENINO", "fa-mars": usuario.tercero.sexo=="MASCULINO"}' [ngStyle]='{"color": usuario.tercero.sexo=="FEMENINO" ?"#ff3399":"#0033cc"}'></i> {{usuario.tercero.pnombre}}
+                                    {{usuario.tercero.snombre}} {{usuario.tercero.papellido}} {{usuario.tercero.sapellido}}
+                                </h3>
+                                <p class="text-muted text-center"><strong>{{usuario.tercero.tipoidentificacion}}</strong>. {{usuario.tercero.identificacion}} <br><strong>Usuario</strong>: {{usuario.usuario}} <br><strong>Rol</strong>: usuario.rol.descripcion</p>
+
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item"><b>Fecha de nacimiento</b> <a class="float-right">{{usuario.tercero.fechanacimiento}}</a></li>
+                                    <li class="list-group-item"><b>Dirección</b> <a class="float-right">{{usuario.tercero.direccion}}</a></li>
+                                    <li class="list-group-item"><b>Telefono</b> <a class="float-right">{{usuario.tercero.telefono}}</a></li>
+                                    <li class="list-group-item"><b>Email</b> <a class="float-right">{{usuario.tercero.email}}</a></li>
+                                </ul>
+
+                                <a class="btn btn-primary btn-block" (click)="cerrarModal()"><b>Cerrar</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

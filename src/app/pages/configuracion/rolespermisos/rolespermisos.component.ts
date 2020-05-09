@@ -48,7 +48,6 @@ export class RolespermisosComponent implements OnInit {
   }
 
   listarPermisos(){
-    console.log(this.buscar);
     this._menusService.cargarPermisos(this.selectedRole, this.buscar).subscribe(
       menus => this.menus=menus.menus
     )

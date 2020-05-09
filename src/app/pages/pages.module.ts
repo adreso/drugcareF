@@ -27,6 +27,11 @@ import { CiudadesComponent } from './generales/ciudades/ciudades.component';
 import { UsuariosComponent } from './generales/usuarios/usuarios.component';
 import { ButtonErrorValidatorComponent } from './shared/button-error-validator/button-error-validator.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { UsuarioDetalleComponent } from './generales/usuarios/usuario-detalle.component';
+import { PrincipiosComponent } from './parametros/principios/principios.component';
+import { FormPrincipioComponent } from './parametros/principios/formulario/form-principio.component';
+import { PropiedadesComponent } from './parametros/propiedades/propiedades.component';
+import { FormPropiedadesComponent } from './parametros/propiedades/formulario/form-propiedades.component';
 
 
 @NgModule({
@@ -49,6 +54,11 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
     CiudadesComponent,
     UsuariosComponent,
     ButtonErrorValidatorComponent,
+    UsuarioDetalleComponent,
+    PrincipiosComponent,
+    FormPrincipioComponent,
+    PropiedadesComponent,
+    FormPropiedadesComponent,
     
   ],
   imports: [

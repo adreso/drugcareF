@@ -11,6 +11,7 @@ import { NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { Subject, merge, Observable } from 'rxjs';
 import { distinctUntilChanged, debounceTime, filter, map } from 'rxjs/operators';
 import { Toast, ToastErrores } from '../../../config/alertas';
+import { ModalService } from 'src/app/services/settings/modal.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -56,6 +57,7 @@ emailEncontrado:boolean=true;
 usuarioEncontrado:boolean=true;
 @ViewChild("identificacion") identificacionField: ElementRef;
 
+idUsuarioSeleccionado:Usuario;
   
   usuarioForm:RxFormGroup = <RxFormGroup>this.fb.group({
     tercero: this.fb.group({
@@ -82,7 +84,8 @@ usuarioEncontrado:boolean=true;
     private fb: RxFormBuilder, 
     private cd: ChangeDetectorRef,
     public _usuariosService:UsuariosService,
-    public _roleService:RolesService
+    public _roleService:RolesService,
+    public _modalService:ModalService
     ) {       
   }
 
@@ -108,6 +111,7 @@ onFormsChanges(){
       this.focus();
     });
     this.cargar();
+    this._modalService.notificarUpload.subscribe(()=>this.idUsuarioSeleccionado);
   }
 
   getRoles(buscar:string){
@@ -203,4 +207,10 @@ onFormsChanges(){
     this.identificacionField.nativeElement.focus();
   }
 
+  abrirModal(usuario:Usuario){
+     console.log(usuario);
+    this.idUsuarioSeleccionado=usuario;
+    // console.log(this.idUsuarioSeleccionado);
+    this._modalService.abrirModal();
+  }
 }

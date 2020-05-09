@@ -10,7 +10,7 @@ export class PrincipioService {
 
   constructor(private http:HttpClient) { }
 
-  cargarPaises(limite, offset, buscar){
+  cargar(limite, offset, buscar){
     return cargarGenerico(limite, offset, buscar, this.http,'/api/principios');
   }
 

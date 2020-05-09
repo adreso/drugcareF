@@ -21,6 +21,15 @@ export class UsuariosService {
   guardar(usuario){
     return guardarGenerico(usuario, '/api/usuarios', this.http);
   }
+  
+  buscarUsuarioPorId(id){
+    let url=URL_SERVICIOS+'/api/usuarios/'+id;
+    return this.http.get(url).pipe(
+      map((resp:any)=>{
+        return resp;
+      })
+    )
+  }
 
   buscarIdentificacion(identificacion:string){
     const headers = new HttpHeaders({'identificacion':identificacion});
@@ -40,4 +49,6 @@ export class UsuariosService {
       map((resp:any)=>{return resp})
     )
   }
+
+
 }

@@ -1,3 +1,5 @@
+<app-usuario-detalle *ngIf="idUsuarioSeleccionado" [usuario]="idUsuarioSeleccionado"> </app-usuario-detalle>
+
 <div class="row">
     <div class="col-6">
         <div class="card animated fadeIn">
@@ -13,6 +15,7 @@
                 <table class="table table-striped table-valign-middle ">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Usuario</th>
                             <th>Nombre</th>
                             <th>Role</th>
@@ -20,7 +23,9 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <tr *ngFor="let usuario of usuarios | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalUsuarios}">
+                            <td><i (click)="abrirModal(usuario)" class="fas fa-user-circle"></i></td>
                             <td>{{usuario.usuario}}</td>
                             <td>{{usuario.tercero.pnombre}} {{usuario.tercero.snombre}} {{usuario.tercero.papellido}} {{usuario.tercero.sapellido}}</td>
                             <td>{{usuario.role.descripcion}}</td>

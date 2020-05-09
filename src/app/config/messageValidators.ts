@@ -44,8 +44,11 @@ export const resetForm = (formGroup:FormGroup) =>{
       }
   
   }
-  
-  
+}
+
+export const resetearForma = (formGroup:FormGroup) =>{
+  formGroup.reset();
+  resetForm(formGroup);
 }
 
 // export const resetForm = (form: FormGroup) => {

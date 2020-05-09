@@ -11,6 +11,7 @@ import { RolespermisosComponent } from './configuracion/rolespermisos/rolespermi
 import { DepartamentosComponent } from './generales/departamentos/departamentos.component';
 import { CiudadesComponent } from './generales/ciudades/ciudades.component';
 import { UsuariosComponent } from './generales/usuarios/usuarios.component';
+import { PrincipiosComponent } from './parametros/principios/principios.component';
 
 const pagesRoutes: Routes = [
   {
@@ -29,6 +30,7 @@ const pagesRoutes: Routes = [
       { path: 'departamentos', component: DepartamentosComponent, data:{titulo:'Departamentos'} },
       { path: 'ciudades', component: CiudadesComponent, data:{titulo:'Ciudades'} },
       { path: 'usuarios', component: UsuariosComponent, data:{titulo:'Usuarios'} },
+      { path: 'principios', component: PrincipiosComponent, data:{titulo:'Principios activos'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },
