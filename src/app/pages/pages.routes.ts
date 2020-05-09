@@ -12,6 +12,7 @@ import { DepartamentosComponent } from './generales/departamentos/departamentos.
 import { CiudadesComponent } from './generales/ciudades/ciudades.component';
 import { UsuariosComponent } from './generales/usuarios/usuarios.component';
 import { PrincipiosComponent } from './parametros/principios/principios.component';
+import { PropiedadesComponent } from './parametros/propiedades/propiedades.component';
 
 const pagesRoutes: Routes = [
   {
@@ -31,6 +32,7 @@ const pagesRoutes: Routes = [
       { path: 'ciudades', component: CiudadesComponent, data:{titulo:'Ciudades'} },
       { path: 'usuarios', component: UsuariosComponent, data:{titulo:'Usuarios'} },
       { path: 'principios', component: PrincipiosComponent, data:{titulo:'Principios activos'} },
+      { path: 'propiedades', component: PropiedadesComponent, data:{titulo:'Propiedades de los medicamentos'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

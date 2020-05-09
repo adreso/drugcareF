@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Principio } from '../../../models/parametros/principio.models';
 import { LIMITE } from '../../../config/config';
-import { PrincipioService } from '../../../services/parametros/principio.service';
+import { ParametrosService } from '../../../services/parametros/parametros.service';
 import { ModalService } from 'src/app/services/settings/modal.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class PrincipiosComponent implements OnInit {
   buscar='';
 
   constructor(
-    public _principioService:PrincipioService,
+    public _parametrosService:ParametrosService,
     public _modalService:ModalService
   ) { }
 
@@ -37,7 +37,7 @@ export class PrincipiosComponent implements OnInit {
   }
 
   cargar(){
-    this._principioService.cargar(this.limite, this.offset, this.buscar).subscribe(
+    this._parametrosService.cargar(this.limite, this.offset, this.buscar, 'principios').subscribe(
       principios =>{
         this.totalPrincipios=principios.total;
         this.principios=principios.principios;

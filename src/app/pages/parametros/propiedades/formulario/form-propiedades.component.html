@@ -1,1 +1,58 @@
-<p>form-propiedades works!</p>
+<div class="abrir-modal animacion fadeIn" *ngIf="_modalService.modal">
+    <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Formulario Pais</h5>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form [formGroup]="propiedadForm" (ngSubmit)="guardar()">
+                            <div class="modal-body">
+                                <div class="card card-primary">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="categoria">Categoria</span>
+                                                </div>
+                                                <select formControlName="categoria" class="form-control" aria-describedby="Categoria" name="categoria">
+                                                    <option *ngFor="let key of keyCategoriaId" [value]="key">{{key}}</option>
+                                                </select>
+                                                <div class="input-group-append" *ngIf="(propiedadForm.get('categoria').touched || propiedadForm.get('categoria').dirty ) && propiedadForm.get('categoria').errors">
+                                                    <app-button-error-validator *ngIf="propiedadForm.get('categoria')['errorMessage']" error="{{propiedadForm.get('categoria')['errorMessage']}}"></app-button-error-validator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="descripcion">Descripcion</span>
+                                                </div>
+                                                <input #descripcion formControlName="descripcion" type="text" class="form-control" placeholder="Ingresa principio activo" name="descripcion" aria-label="Ingrese el principio activo" aria-describedby="descripcion">
+                                                <div class="input-group-append" *ngIf="(propiedadForm.get('descripcion').touched || propiedadForm.get('descripcion').dirty ) && propiedadForm.get('descripcion').errors">
+                                                    <app-button-error-validator *ngIf="propiedadForm.get('descripcion')['errorMessage']" error="{{propiedadForm.get('descripcion')['errorMessage']}}"></app-button-error-validator>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

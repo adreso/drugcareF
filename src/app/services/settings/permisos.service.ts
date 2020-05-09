@@ -27,8 +27,6 @@ export class PermisosService{
     return guardarGenerico(accione, '/api/acciones', this.http);
   }
 
-
-
   cargarAcciones(limite, offset, buscar, ventana:Ventana){
     return cargarGenericoAsociado(limite, offset, buscar, this.http, '/api/acciones', ventana);
   }

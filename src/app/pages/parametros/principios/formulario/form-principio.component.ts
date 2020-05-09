@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Principio } from '../../../../models/parametros/principio.models';
 import { ModalService } from 'src/app/services/settings/modal.service';
-import { PrincipioService } from '../../../../services/parametros/principio.service';
+import { ParametrosService } from '../../../../services/parametros/parametros.service';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { configMessagesValidator, resetearForma } from '../../../../config/messageValidators';
@@ -22,13 +22,12 @@ export class FormPrincipioComponent implements OnInit {
 
   constructor(
     public _modalService:ModalService,
-    public _principiosService:PrincipioService,
+    public _parametrosService:ParametrosService,
     private rxFB:RxFormBuilder
   ) { }
 
 
   ngOnInit(): void {
-    // let principioForm:Principio=this.principio;
     let principioForm=new Principio();
     this.principioForm = this.rxFB.formGroup(principioForm);
     configMessagesValidator();
@@ -46,7 +45,7 @@ export class FormPrincipioComponent implements OnInit {
       this.principioForm.value.id=this.principio.id;
     }
     if(this.principioForm.valid){
-      this._principiosService.guardar(this.principioForm.value).subscribe(
+      this._parametrosService.guardar(this.principioForm.value, 'principios').subscribe(
         (principio:Principio) =>{
           Toast.fire({icon:'success', title:`Principio guardado correctamente`});
           this._modalService.notificarUpload.emit(this.principio);

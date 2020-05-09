@@ -1,1 +1,47 @@
-<p>propiedades works!</p>
+<app-form-propiedades *ngIf="propiedadSeleccionada" [propiedad]="propiedadSeleccionada"> </app-form-propiedades>
+
+
+<div class="card animated fadeIn">
+    <div class="card-header  bg-light">
+        <h5 class="card-title card-title2">Propiedades de los medicamentos (<small>{{totalPropiedad}}</small>)</h5>
+        <div class="card-tools">
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarPrincipio (keyup)="p=1;buscar=buscarPrincipio.value; verp(p)">
+                <a title="Agregar propiedad" class="btn btn-tool btn-sm btn-success mr-sm-2" data-toggle="modal" (click)="abrirModal(propiedad)">
+                    <i class=" fas fa-plus "></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0 ">
+        <table class="table table-striped table-valign-middle ">
+            <thead>
+                <tr>
+                    <th>Principio activo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let propiedad of propiedades | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalPropiedad}">
+                    <td>{{propiedad.categoria}}</td>
+                    <td>{{propiedad.descripcion}}</td>
+                    <td>
+                        <a (click)="abrirModal(propiedad)" class="text-muted ">
+                            <i class="fas fa-edit" title="Editar"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" *ngIf="propiedades?.length==0">No hay registros encontrados</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <nav class="pagination pagination-lg">
+        <ul class="pagination justify-content-end">
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
+        </ul>
+    </nav>
+</div>
