@@ -1,24 +1,24 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Principio } from '../../../../models/parametros/principio.models';
+import { FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/services/settings/modal.service';
 import { ParametrosService } from '../../../../services/parametros/parametros.service';
-import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { GrupoTerapeutico } from '../../../../models/parametros/grupoTerapeutico.models';
 import { configMessagesValidator, resetearForma } from '../../../../config/messageValidators';
 import { Toast, ToastErrores } from '../../../../config/alertas';
 
 @Component({
-  selector: 'app-form-principio',
-  templateUrl: './form-principio.component.html',
+  selector: 'app-form-grupoterapeutico',
+  templateUrl: './form-grupoterapeutico.component.html',
   styles: [
   ]
 })
-export class FormPrincipioComponent implements OnInit {
+export class FormGrupoterapeuticoComponent implements OnInit {
 
-  @Input() principio:Principio;
-  @ViewChild("nombre") nombreField:ElementRef;
+  @Input() grupoTerapeutico:GrupoTerapeutico;
+  @ViewChild("descripcion") nombreField:ElementRef;
 
-  principioForm:FormGroup;
+  thisForm:FormGroup;
 
   constructor(
     public _modalService:ModalService,
@@ -28,8 +28,8 @@ export class FormPrincipioComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let principioForm=new Principio();
-    this.principioForm = this.rxFB.formGroup(principioForm);
+    let thisForm=new GrupoTerapeutico();
+    this.thisForm = this.rxFB.formGroup(thisForm);
     configMessagesValidator();
     setTimeout(() => {
       this.focusNombre();
@@ -37,20 +37,20 @@ export class FormPrincipioComponent implements OnInit {
   }
   ngOnChanges(): void {
     setTimeout(() => {
-      this.principioForm.patchValue(this.principio);
+      this.thisForm.patchValue(this.grupoTerapeutico);
     });
   }
   guardar(){
-    if(this.principio){
-      this.principioForm.value.id=this.principio.id;
+    if(this.grupoTerapeutico){
+      this.thisForm.value.id=this.grupoTerapeutico.id;
     }
-    if(this.principioForm.valid){
-      this._parametrosService.guardar(this.principioForm.value, 'principios').subscribe(
-        (principio:Principio) =>{
-          Toast.fire({icon:'success', title:`Principio guardado correctamente`});
-          this._modalService.notificarUpload.emit(this.principio);
+    if(this.thisForm.valid){
+      this._parametrosService.guardar(this.thisForm.value, 'gruposterapeuticos').subscribe(
+        (grupoTerapeutico:GrupoTerapeutico) =>{
+          Toast.fire({icon:'success', title:`GrupoTerapeutico guardado correctamente`});
+          this._modalService.notificarUpload.emit(this.grupoTerapeutico);
           this.cerrarModal();
-          resetearForma(this.principioForm)
+          resetearForma(this.thisForm)
 
         },
         err =>ToastErrores(err)

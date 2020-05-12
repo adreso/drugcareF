@@ -32,6 +32,8 @@ import { PrincipiosComponent } from './parametros/principios/principios.componen
 import { FormPrincipioComponent } from './parametros/principios/formulario/form-principio.component';
 import { PropiedadesComponent } from './parametros/propiedades/propiedades.component';
 import { FormPropiedadesComponent } from './parametros/propiedades/formulario/form-propiedades.component';
+import { GruposterapeuticosComponent } from './parametros/gruposterapeuticos/gruposterapeuticos.component';
+import { FormGrupoterapeuticoComponent } from './parametros/gruposterapeuticos/formulario/form-grupoterapeutico.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { FormPropiedadesComponent } from './parametros/propiedades/formulario/fo
     FormPrincipioComponent,
     PropiedadesComponent,
     FormPropiedadesComponent,
+    GruposterapeuticosComponent,
+    FormGrupoterapeuticoComponent,
     
   ],
   imports: [
