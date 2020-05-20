@@ -1,0 +1,79 @@
+<div class="abrir-modal animacion fadeIn" *ngIf="_modalService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+      <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">Formulario Enfermedad</h5>
+                  <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+              </div>
+              <div class="modal-body">
+                  <div class="container">
+                      <form [formGroup]="thisForm" (ngSubmit)="guardar()">
+                          <div class="modal-body">
+                              <div class="card card-primary">
+                                  <div class="card-body">
+                                      <div class="form-group">
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">Código</span>
+                                              </div>
+                                              <input #codigo formControlName="codigo" type="text" class="form-control" placeholder="Ingresa código CE10" name="codigo" aria-label="Ingrese el codigo" aria-describedby="codigo">
+                                              <div class="input-group-append" *ngIf="(thisForm.get('codigo').touched || thisForm.get('codigo').dirty ) && thisForm.get('codigo').errors">
+                                                  <app-button-error-validator *ngIf="thisForm.get('codigo')['errorMessage']" error="{{thisForm.get('codigo')['errorMessage']}}"></app-button-error-validator>
+                                              </div>
+                                          </div>
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">Nombre</span>
+                                              </div>
+                                              <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre enfermedad" name="nombre" aria-label="Ingrese el nombre" aria-describedby="nombre">
+                                              <div class="input-group-append" *ngIf="(thisForm.get('nombre').touched || thisForm.get('nombre').dirty ) && thisForm.get('nombre').errors">
+                                                  <app-button-error-validator *ngIf="thisForm.get('nombre')['errorMessage']" error="{{thisForm.get('nombre')['errorMessage']}}"></app-button-error-validator>
+                                              </div>
+                                          </div>
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">Edad inicial</span>
+                                              </div>
+                                              <input formControlName="edadinicial" type="number" class="form-control" placeholder="Edad inicial" name="edadinicial" aria-label="Ingrese la edad inicial" aria-describedby="edadinicial">
+                                              <div class="input-group-append" *ngIf="(thisForm.get('edadinicial').touched || thisForm.get('edadinicial').dirty ) && thisForm.get('edadinicial').errors">
+                                                  <app-button-error-validator *ngIf="thisForm.get('edadinicial')['errorMessage']" error="{{thisForm.get('edadinicial')['errorMessage']}}"></app-button-error-validator>
+                                              </div>
+                                          </div>
+                                          <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                  <span class="input-group-text">Edad final</span>
+                                              </div>
+                                              <input formControlName="edadfinal" type="text" class="form-control" placeholder="Edad final" name="edadfinal" aria-label="Ingrese la edad final" aria-describedby="edadfinal">
+                                              <div class="input-group-append" *ngIf="(thisForm.get('edadfinal').touched || thisForm.get('edadfinal').dirty ) && thisForm.get('edadfinal').errors">
+                                                  <app-button-error-validator *ngIf="thisForm.get('edadfinal')['errorMessage']" error="{{thisForm.get('edadfinal')['errorMessage']}}"></app-button-error-validator>
+                                              </div>
+                                          </div>
+                                          <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="sexo">Sexo</span>
+                                            </div>
+                                            <select formControlName="sexo" class="form-control" aria-describedby="sexo" id="sexi" name="sexo">
+                                                <option *ngFor="let key of keySexo" [value]="key">{{key}}</option>
+                                            </select>
+                                            <div class="input-group-append" *ngIf="(thisForm.get('sexo').touched || thisForm.get('sexo').dirty ) && thisForm.get('sexo').errors">
+                                                <app-button-error-validator *ngIf="thisForm.get('sexo')['errorMessage']" error="{{thisForm.get('sexo')['errorMessage']}}"></app-button-error-validator>
+                                            </div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="modal-footer justify-content-between">
+                              <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                              <button type="submit" class="btn btn-primary">Guardar</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

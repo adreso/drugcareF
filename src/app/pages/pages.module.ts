@@ -34,6 +34,10 @@ import { PropiedadesComponent } from './parametros/propiedades/propiedades.compo
 import { FormPropiedadesComponent } from './parametros/propiedades/formulario/form-propiedades.component';
 import { GruposterapeuticosComponent } from './parametros/gruposterapeuticos/gruposterapeuticos.component';
 import { FormGrupoterapeuticoComponent } from './parametros/gruposterapeuticos/formulario/form-grupoterapeutico.component';
+import { EnfermedadesComponent } from './parametros/enfermedades/enfermedades.component';
+import { FormEnfermedadComponent } from './parametros/enfermedades/formulario/form-enfermedad.component';
+import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipoparaclinicos.component';
+import { FormTipoParaclinicoComponent } from './parametros/tipoparaclinicos/formulario/form-tipo-paraclinico.component';
 
 
 @NgModule({
@@ -63,6 +67,10 @@ import { FormGrupoterapeuticoComponent } from './parametros/gruposterapeuticos/f
     FormPropiedadesComponent,
     GruposterapeuticosComponent,
     FormGrupoterapeuticoComponent,
+    EnfermedadesComponent,
+    FormEnfermedadComponent,
+    TipoparaclinicosComponent,
+    FormTipoParaclinicoComponent,
     
   ],
   imports: [

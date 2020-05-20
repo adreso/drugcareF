@@ -14,6 +14,8 @@ import { UsuariosComponent } from './generales/usuarios/usuarios.component';
 import { PrincipiosComponent } from './parametros/principios/principios.component';
 import { PropiedadesComponent } from './parametros/propiedades/propiedades.component';
 import { GruposterapeuticosComponent } from './parametros/gruposterapeuticos/gruposterapeuticos.component';
+import { EnfermedadesComponent } from './parametros/enfermedades/enfermedades.component';
+import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipoparaclinicos.component';
 
 const pagesRoutes: Routes = [
   {
@@ -35,6 +37,8 @@ const pagesRoutes: Routes = [
       { path: 'principios', component: PrincipiosComponent, data:{titulo:'Principios activos'} },
       { path: 'propiedades', component: PropiedadesComponent, data:{titulo:'Propiedades de los medicamentos'} },
       { path: 'gruposterapeuticos', component: GruposterapeuticosComponent, data:{titulo:'Grupos terapéuticos'} },
+      { path: 'enfermedades', component: EnfermedadesComponent, data:{titulo:'Enfermedades'} },
+      { path: 'tipoparaclinicos', component: TipoparaclinicosComponent, data:{titulo:'Tipos de paraclinicos'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

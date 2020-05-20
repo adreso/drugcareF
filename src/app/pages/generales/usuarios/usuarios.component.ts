@@ -19,7 +19,7 @@ import { ModalService } from 'src/app/services/settings/modal.service';
   styles: []
 })
 export class UsuariosComponent implements OnInit {
-  
+
 //combo Typeahead
   @ViewChild('instance', {static: true}) instance: NgbTypeahead;
   focus$ = new Subject<string>();
@@ -58,10 +58,10 @@ usuarioEncontrado:boolean=true;
 @ViewChild("identificacion") identificacionField: ElementRef;
 
 idUsuarioSeleccionado:Usuario;
-  
+
   usuarioForm:RxFormGroup = <RxFormGroup>this.fb.group({
     tercero: this.fb.group({
-       identificacion: [this.usuario.tercero.identificacion, [RxwebValidators.required(),  RxwebValidators.minLength({value:4})]],
+      identificacion: [this.usuario.tercero.identificacion, [RxwebValidators.required(),  RxwebValidators.minLength({value:4})]],
       tipoidentificacion: [this.usuario.tercero.tipoidentificacion,[RxwebValidators.required() ]],
       pnombre: [this.usuario.tercero.pnombre, [RxwebValidators.required(),  RxwebValidators.minLength({value:3})]],
       snombre: [this.usuario.tercero.snombre, [RxwebValidators.minLength({value:3})]],
@@ -81,18 +81,18 @@ idUsuarioSeleccionado:Usuario;
   }, {abstractControlOptions: {role:'blur'}});
 
   constructor(
-    private fb: RxFormBuilder, 
+    private fb: RxFormBuilder,
     private cd: ChangeDetectorRef,
     public _usuariosService:UsuariosService,
     public _roleService:RolesService,
     public _modalService:ModalService
-    ) {       
+    ) {
   }
 
 onFormsChanges(){
   this.usuarioForm.get('role').valueChanges.subscribe(val => {
     if (typeof(val) === 'string') {
-      const empFinded = this.roles.find(x => 
+      const empFinded = this.roles.find(x =>
           (x.descripcion.toUpperCase()) === val.toUpperCase() || x.descripcion.toUpperCase() === val.toUpperCase());
       this.usuarioForm.get('role').patchValue(empFinded);
     }
@@ -131,10 +131,10 @@ onFormsChanges(){
     this.usuarioForm.reset();
     resetForm(this.usuarioForm);
   }
-  
+
   guardar(){
     if(this.usuario){
-     this.usuarioForm.value.id=this.usuario.id; 
+     this.usuarioForm.value.id=this.usuario.id;
     }
    if(this.usuarioForm.valid){
     this._usuariosService.guardar(this.usuarioForm.value).subscribe(
