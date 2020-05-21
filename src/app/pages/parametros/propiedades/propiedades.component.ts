@@ -12,7 +12,6 @@ import { ModalService } from 'src/app/services/settings/modal.service';
 })
 export class PropiedadesComponent implements OnInit {
 
- 
   propiedad:Propiedad = new Propiedad();
   propiedades:Propiedad[];
   propiedadSeleccionada:Propiedad;

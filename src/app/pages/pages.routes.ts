@@ -16,6 +16,7 @@ import { PropiedadesComponent } from './parametros/propiedades/propiedades.compo
 import { GruposterapeuticosComponent } from './parametros/gruposterapeuticos/gruposterapeuticos.component';
 import { EnfermedadesComponent } from './parametros/enfermedades/enfermedades.component';
 import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipoparaclinicos.component';
+import { TipohorariosComponent } from './parametros/tipohorarios/tipohorarios.component';
 
 const pagesRoutes: Routes = [
   {
@@ -39,6 +40,7 @@ const pagesRoutes: Routes = [
       { path: 'gruposterapeuticos', component: GruposterapeuticosComponent, data:{titulo:'Grupos terapéuticos'} },
       { path: 'enfermedades', component: EnfermedadesComponent, data:{titulo:'Enfermedades'} },
       { path: 'tipoparaclinicos', component: TipoparaclinicosComponent, data:{titulo:'Tipos de paraclinicos'} },
+      { path: 'tipohorarios', component: TipohorariosComponent, data:{titulo:'Tipos de horarios'} },
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

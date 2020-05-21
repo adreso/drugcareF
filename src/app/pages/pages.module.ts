@@ -38,6 +38,8 @@ import { EnfermedadesComponent } from './parametros/enfermedades/enfermedades.co
 import { FormEnfermedadComponent } from './parametros/enfermedades/formulario/form-enfermedad.component';
 import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipoparaclinicos.component';
 import { FormTipoParaclinicoComponent } from './parametros/tipoparaclinicos/formulario/form-tipo-paraclinico.component';
+import { TipohorariosComponent } from './parametros/tipohorarios/tipohorarios.component';
+import { FormTipoHorarioComponent } from './parametros/tipohorarios/formularios/form-tipo-horario.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { FormTipoParaclinicoComponent } from './parametros/tipoparaclinicos/form
     FormEnfermedadComponent,
     TipoparaclinicosComponent,
     FormTipoParaclinicoComponent,
+    TipohorariosComponent,
+    FormTipoHorarioComponent,
     
   ],
   imports: [

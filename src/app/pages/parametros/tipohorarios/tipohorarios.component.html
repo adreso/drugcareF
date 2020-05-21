@@ -1,0 +1,45 @@
+<app-form-tipo-horario *ngIf="tipoHorarioSeleccionado" [tipoHorario]="tipoHorarioSeleccionado"> </app-form-tipo-horario>
+
+
+<div class="card animated fadeIn">
+    <div class="card-header  bg-light">
+        <h5 class="card-title card-title2">Tipos de horarios (<small>{{totalTipoHorario}}</small>)</h5>
+        <div class="card-tools">
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarTabla (keyup)="p=1;buscar=buscarTabla.value; verp(p)">
+                <a title="Agregar tipoHorario" class="btn btn-tool btn-sm btn-success mr-sm-2" data-toggle="modal" (click)="abrirModal(tipoHorario)">
+                    <i class=" fas fa-plus "></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0 ">
+        <table class="table table-striped table-valign-middle ">
+            <thead>
+                <tr>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tipoHorario of tipohorarios | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalTipoHorario}">
+                    <td>{{tipoHorario.descripcion}}</td>
+                    <td>
+                        <a (click)="abrirModal(tipoHorario)" class="text-muted ">
+                            <i class="fas fa-edit" title="Editar"></i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" *ngIf="tipohorarios?.length==0">No hay registros encontrados</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <nav class="pagination pagination-lg">
+        <ul class="pagination justify-content-end">
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
+        </ul>
+    </nav>
+</div>

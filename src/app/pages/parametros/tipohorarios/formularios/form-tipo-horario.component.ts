@@ -1,27 +1,24 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { Propiedad } from '../../../../models/parametros/propiedad.models';
 import { FormGroup } from '@angular/forms';
+import { TipoHorario } from '../../../../models/parametros/tipohorarios.models';
+import { ModalService } from '../../../../services/settings/modal.service';
 import { ParametrosService } from '../../../../services/parametros/parametros.service';
-import { ModalService } from 'src/app/services/settings/modal.service';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { configMessagesValidator, resetearForma } from '../../../../config/messageValidators';
 import { Toast, ToastErrores } from '../../../../config/alertas';
-import { CategoriaPropiedadesMedicamentos } from '../../../../config/enums';
 
 @Component({
-  selector: 'app-form-propiedades',
-  templateUrl: './form-propiedades.component.html',
+  selector: 'app-form-tipo-horario',
+  templateUrl: './form-tipo-horario.component.html',
   styles: [
   ]
 })
-export class FormPropiedadesComponent implements OnInit {
+export class FormTipoHorarioComponent implements OnInit {
 
-  @Input() propiedad:Propiedad;
+  @Input() tipoHorario:TipoHorario;
   @ViewChild("descripcion") nombreField:ElementRef;
 
-  propiedadForm:FormGroup;
-
-  public keyCategoriaId = Object.values(CategoriaPropiedadesMedicamentos);
+  thisForm:FormGroup;
 
   constructor(
     public _modalService:ModalService,
@@ -31,8 +28,8 @@ export class FormPropiedadesComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let propiedadForm=new Propiedad();
-    this.propiedadForm = this.rxFB.formGroup(propiedadForm);
+    let thisForm=new TipoHorario();
+    this.thisForm = this.rxFB.formGroup(thisForm);
     configMessagesValidator();
     setTimeout(() => {
       this.focusNombre();
@@ -40,20 +37,20 @@ export class FormPropiedadesComponent implements OnInit {
   }
   ngOnChanges(): void {
     setTimeout(() => {
-      this.propiedadForm.patchValue(this.propiedad);
+      this.thisForm.patchValue(this.tipoHorario);
     });
   }
   guardar(){
-    if(this.propiedad){
-      this.propiedadForm.value.id=this.propiedad.id;
+    if(this.tipoHorario){
+      this.thisForm.value.id=this.tipoHorario.id;
     }
-    if(this.propiedadForm.valid){
-      this._parametrosService.guardar(this.propiedadForm.value, 'propiedades').subscribe(
-        (propiedad:Propiedad) =>{
-          Toast.fire({icon:'success', title:`Propiedad guardado correctamente`});
-          this._modalService.notificarUpload.emit(this.propiedad);
+    if(this.thisForm.valid){
+      this._parametrosService.guardar(this.thisForm.value, 'tipohorarios').subscribe(
+        (tipoHorario:TipoHorario) =>{
+          Toast.fire({icon:'success', title:`Tipo de horario guardado correctamente`});
+          this._modalService.notificarUpload.emit(this.tipoHorario);
           this.cerrarModal();
-          resetearForma(this.propiedadForm)
+          resetearForma(this.thisForm)
 
         },
         err =>ToastErrores(err)
