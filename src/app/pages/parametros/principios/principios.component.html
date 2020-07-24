@@ -19,12 +19,14 @@
             <thead>
                 <tr>
                     <th>Principio activo</th>
+                    <th>Grupo terapeutico</th>
                     <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let principio of principios | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalPrincipios}">
                     <td>{{principio.nombre}}</td>
+                    <td>{{principio.grupoterapeutico.descripcion}}</td>
                     <td>
                         <a (click)="abrirModal(principio)" class="text-muted ">
                             <i class="fas fa-edit" title="Editar"></i>

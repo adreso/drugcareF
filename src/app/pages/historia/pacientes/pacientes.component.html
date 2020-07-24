@@ -1,0 +1,64 @@
+<div class="card card-solid">
+  <div class="card-header  bg-light">
+    <h5 class="card-title card-title2">Listado de pacientes (<small>{{totalPacientes}}</small>)</h5>
+    <div class="card-tools">
+      <div class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarPais (keyup)="p=1;buscar=buscarPais.value; verp(p)">
+        <a title="Agregar pais" class="btn btn-tool btn-sm btn-success mr-sm-2" data-toggle="modal" routerLink="/pacientes/agregarpaciente">
+            <i class=" fas fa-plus "></i>
+        </a>
+    </div>
+
+    </div>
+</div>
+
+  <div class="card-body pb-0 "  >
+    <div class="row d-flex align-items-stretch" >
+      <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch animated fadeIn" *ngFor="let paciente of pacientes | paginate:{itemsPerPage: limite, currentPage:p, totalItems: totalPacientes}">
+        <div class="card bg-light">
+          <div class="card-header text-muted border-bottom-0 ">
+            {{paciente.tercero.tipoidentificacion}}. {{paciente.tercero.identificacion}}
+          </div>
+          <div class="card-body pt-0">
+            <div class="row">
+              <div class="col-7">
+                <h2 class="lead"><b>{{paciente.tercero.pnombre + ' '+ paciente.tercero.snombre + ' '+ paciente.tercero.papellido + ' '+paciente.tercero.sapellido}}</b></h2>
+                <p class="text-muted text-sm"><b>{{paciente.tercero.sexo}} </b> {{paciente.tercero.fechanacimiento}} </p>
+                <ul class="ml-4 mb-0 fa-ul text-muted">
+                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> {{paciente.tercero.direccion}}</li>
+                  <li class="small"><span class="fa-li"><i class="fas fa-lg fa-phone"></i></span> {{paciente.tercero.telefono}}</li>
+                </ul>
+              </div>
+              <div class="col-5 text-center">
+                <img src="../../../../assets/dist/img/user1-128x128.jpg" alt="" class="img-circle img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="text-right">
+
+              <a href="#" class="btn btn-sm bg-teal">
+                <i class="fas fa-comments"></i>
+              </a>
+              <a href="#" class="btn btn-sm btn-primary" [routerLink]="'/pacientes/perfil/'+paciente.id">
+                <i class="fas fa-user" ></i> Ver historia
+              </a>
+              <a href="#" class="btn btn-sm btn-success" title="Editar este paciente" [routerLink]="'/pacientes/agregarpaciente/'+paciente.tercero.identificacion">
+                <i class="fas fa-edit"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+  <div class="card-footer">
+    <nav aria-label="Contacts Page Navigation">
+        <ul class="pagination justify-content-center m-0">
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p=$event" (click)="verp(p)"></pagination-controls>
+        </ul>
+    </nav>
+  </div>
+  <!-- /.card-footer -->
+</div>

@@ -16,7 +16,7 @@ export const ToastErrores = (err)=>{
   if(Array.isArray(err.error.message)){
     for (let index = 0; index < err.error.message.length; index++) {
       const element = err.error.message[index].message;
-      Toast.fire({icon:'error', title:element});  
+      Toast.fire({icon:'error', title:element});
     }
   }else{
     Toast.fire({icon:'error', title:err.error.message});
@@ -32,4 +32,14 @@ export const swalInfo = (objeto:string, titulo:string, mensaje:string) =>{
     focusConfirm: false,
     confirmButtonText:`<i class="fa fa-thumbs-up"></i>${mensaje}!`
   })
-}
+};
+
+export const swalConfirm = (title:string, texto:string) => Swal.fire({
+  title: title,
+  text: texto,
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si, estoy seguro!'
+});

@@ -9,6 +9,8 @@ export const configMessagesValidator = () =>{
     "maxLength":"El campo no puede tener mas de {{1}} caracteres",
     "maxDate":"La fecha no puede ser mayor a la fecha actual",
     "numeric":"Este dato debe ser númerico",
+    "minNumber":"El valor minimo aceptable es {{1}}",
+    "maxNumber":"El valor máximo aceptable es {{1}}",
     "email":"Email no valido",
     "extension":"Las extensiones validas son: {{1}}",
     "fileSize":"El archivo pesa un total de: {{0}} bytes y el tamaño máximo permitido es {{1}} bytes",
@@ -18,7 +20,7 @@ export const configMessagesValidator = () =>{
 }
 
 
-export const showValidationMsg = (formGroup: FormGroup) => {  
+export const showValidationMsg = (formGroup: FormGroup) => {
   for (const key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
           const control: FormControl = <FormControl>formGroup.controls[key];
@@ -32,7 +34,7 @@ export const showValidationMsg = (formGroup: FormGroup) => {
 }
 
 export const resetForm = (formGroup:FormGroup) =>{
-  
+
     for (const key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
           const control: FormControl = <FormControl>formGroup.controls[key];
@@ -42,7 +44,7 @@ export const resetForm = (formGroup:FormGroup) =>{
           }
           control.setErrors(null);
       }
-  
+
   }
 }
 
@@ -55,6 +57,6 @@ export const resetearForma = (formGroup:FormGroup) =>{
 //   form.reset();
 //   Object.keys(form.controls).forEach(key => {
 //     form.get(key).setErrors(null);
-    
+
 //   });
 // }

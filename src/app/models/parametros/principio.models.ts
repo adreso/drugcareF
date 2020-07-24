@@ -1,4 +1,5 @@
-import {required, minLength} from "@rxweb/reactive-form-validators";
+import {required, minLength, propObject} from "@rxweb/reactive-form-validators";
+import { GrupoTerapeutico } from './grupoTerapeutico.models';
 
 export class Principio{
 
@@ -7,4 +8,8 @@ export class Principio{
     @required()
     @minLength({ value: 4 })
     nombre:string;
+
+    // @propObject(GrupoTerapeutico)
+    @required()
+    grupoterpeutico: GrupoTerapeutico = new GrupoTerapeutico();
 }

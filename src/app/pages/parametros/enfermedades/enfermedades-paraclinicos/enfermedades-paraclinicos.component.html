@@ -1,0 +1,50 @@
+<div class="card animated fadeIn">
+    <div class="card-header  bg-light">
+        <h5 class="card-title card-title2">Paraclinicos (<small>{{totalEnfermedadParaclinicos}}</small>)</h5>
+        <div class="card-tools">
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2 input-search" aria-label="Small" type="search" placeholder="Buscar" aria-label="Search" #buscarParaclinico (keyup)="pe=1;buscar=buscarParaclinico.value; verp(pe)">
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body table-responsive p-0 ">
+      <form novalidate [formGroup]="paraclinicoForm" (ngSubmit)="agregar()" #userForm="ngForm">
+      <div class="input-group">
+        <div class="input-group-prepend">
+            <label for="tipoparaclinico" class="input-group-text">Seleccionar paraclinico</label>
+        </div>
+        <input [formControlName]="'tipoparaclinico'" for="tipoparaclinico" editable="false" placeholder="Seleccione un rol" typeahead-editable="false" class="form-control" type="search" #instance="ngbTypeahead" #buscarParaclinico name="tipoparaclinico" [ngbTypeahead]="search" [inputFormatter]="formatter"
+            [resultFormatter]="formatter" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" (keyup)="getParaclinicos(buscarParaclinico.value)">
+        <div class="input-group-prepend" *ngIf="(paraclinicoForm.get('tipoparaclinico').touched || paraclinicoForm.get('tipoparaclinico').dirty ) && paraclinicoForm.get('tipoparaclinico').errors">
+            <app-button-error-validator *ngIf="paraclinicoForm.get('tipoparaclinico')['errorMessage']" error="{{paraclinicoForm.get('tipoparaclinico')['errorMessage']}}"></app-button-error-validator>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i></button>
+    </div>
+  </form>
+        <table class="table table-valign-middle table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tipoparaclinico of tipoParaclinicos | paginate:{id:'accPag',itemsPerPage: limite, currentPage:pe, totalItems: totalEnfermedadParaclinicos}">
+                    <td>{{tipoparaclinico.nombre}}</td>
+                    <td>
+                      <button class="btn btn-danger"><i (click)="anular(tipoparaclinico.id)" class="fas fa-minus-circle"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3 " *ngIf="tipoParaclinicos?.length==0 ">No hay registros encontrados</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <nav class="pagination pagination-lg " *ngIf="tipoParaclinicos?.length>0">
+        <ul class="pagination justify-content-end">
+            <pagination-controls id="accPag" previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="pe=$event" (click)="verp(pe)"></pagination-controls>
+        </ul>
+    </nav>
+</div>

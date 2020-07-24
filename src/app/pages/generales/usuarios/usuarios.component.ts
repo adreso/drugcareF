@@ -134,9 +134,9 @@ onFormsChanges(){
 
   guardar(){
     if(this.usuario){
-     this.usuarioForm.value.id=this.usuario.id;
+      this.usuarioForm.value.id=this.usuario.id;
     }
-   if(this.usuarioForm.valid){
+    if(this.usuarioForm.valid){
     this._usuariosService.guardar(this.usuarioForm.value).subscribe(
       (usuario:Usuario) =>{
         Toast.fire({icon:'success', title:`Usuario guardado correctamente`});
@@ -146,9 +146,9 @@ onFormsChanges(){
       },
       err =>ToastErrores(err)
     );
-   }else{
-    Toast.fire({icon:'warning', title:`Debe llenar todos los campos requeridos del formulario`});
-   }
+    }else{
+      Toast.fire({icon:'warning', title:`Debe llenar todos los campos requeridos del formulario`});
+    }
   }
 
   cargar(){
@@ -208,9 +208,8 @@ onFormsChanges(){
   }
 
   abrirModal(usuario:Usuario){
-     console.log(usuario);
     this.idUsuarioSeleccionado=usuario;
-    // console.log(this.idUsuarioSeleccionado);
     this._modalService.abrirModal();
   }
+
 }

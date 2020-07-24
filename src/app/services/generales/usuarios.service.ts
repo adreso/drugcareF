@@ -21,7 +21,7 @@ export class UsuariosService {
   guardar(usuario){
     return guardarGenerico(usuario, '/api/usuarios', this.http);
   }
-  
+
   buscarUsuarioPorId(id){
     let url=URL_SERVICIOS+'/api/usuarios/'+id;
     return this.http.get(url).pipe(

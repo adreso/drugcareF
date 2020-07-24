@@ -36,6 +36,15 @@ export const guardarGenerico =(modelo:any, ruta:string, http:HttpClient) =>{
     );
   }
 
+  export const cargarIndividual = (http: HttpClient, ruta:string) =>{
+    let url = URL_SERVICIOS + ruta;
+    return http.get(url).pipe(
+      map((resp:any)=>{
+        return resp;
+      })
+    )
+  }
+
   export const cargarGenericoAsociado = (limite, offset, buscar, http:HttpClient, ruta:string, foraneo:any) =>{
     const headers = new HttpHeaders({'limite':limite, 'offset':offset, 'buscar':buscar, 'foraneo':foraneo.id+'' });
     let url = URL_SERVICIOS + ruta;

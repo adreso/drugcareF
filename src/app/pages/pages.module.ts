@@ -40,6 +40,10 @@ import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipopar
 import { FormTipoParaclinicoComponent } from './parametros/tipoparaclinicos/formulario/form-tipo-paraclinico.component';
 import { TipohorariosComponent } from './parametros/tipohorarios/tipohorarios.component';
 import { FormTipoHorarioComponent } from './parametros/tipohorarios/formularios/form-tipo-horario.component';
+import { EnfermedadesParaclinicosComponent } from './parametros/enfermedades/enfermedades-paraclinicos/enfermedades-paraclinicos.component';
+import { PacientesComponent } from './historia/pacientes/pacientes.component';
+import { FormPacienteComponent } from './historia/pacientes/form-paciente/form-paciente.component';
+import { PerfilComponent } from './historia/pacientes/perfil/perfil.component';
 
 
 @NgModule({
@@ -75,6 +79,10 @@ import { FormTipoHorarioComponent } from './parametros/tipohorarios/formularios/
     FormTipoParaclinicoComponent,
     TipohorariosComponent,
     FormTipoHorarioComponent,
+    EnfermedadesParaclinicosComponent,
+    PacientesComponent,
+    FormPacienteComponent,
+    PerfilComponent,
     
   ],
   imports: [

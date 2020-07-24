@@ -12,26 +12,14 @@ import { Usuario } from 'src/app/models/usuario.model';
 })
 export class UsuarioDetalleComponent implements OnInit {
   @Input() usuario:Usuario;
-  // usuario:Usuario=new Usuario();
 
   constructor(
     public _modalService:ModalService,
     public _usuarioService:UsuariosService
-  ) {
-    // console.log(this.idUsuario);
-   }
+  ) {}
 
   ngOnInit(): void {
-    // this._modalService.notificarUpload
-    // this.buscarUsuarioPorId();
   }
-
-
-  // buscarUsuarioPorId(){
-  //   this._usuarioService.buscarUsuarioPorId(this.idUsuario).subscribe(usuario=>{
-  //       this.usuario=usuario;
-  //   })
-  // }
 
   cerrarModal(){
     this._modalService.cerrarModal();

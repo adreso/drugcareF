@@ -17,6 +17,9 @@ import { GruposterapeuticosComponent } from './parametros/gruposterapeuticos/gru
 import { EnfermedadesComponent } from './parametros/enfermedades/enfermedades.component';
 import { TipoparaclinicosComponent } from './parametros/tipoparaclinicos/tipoparaclinicos.component';
 import { TipohorariosComponent } from './parametros/tipohorarios/tipohorarios.component';
+import { PacientesComponent } from './historia/pacientes/pacientes.component';
+import { FormPacienteComponent } from './historia/pacientes/form-paciente/form-paciente.component';
+import { PerfilComponent } from './historia/pacientes/perfil/perfil.component';
 
 const pagesRoutes: Routes = [
   {
@@ -41,6 +44,17 @@ const pagesRoutes: Routes = [
       { path: 'enfermedades', component: EnfermedadesComponent, data:{titulo:'Enfermedades'} },
       { path: 'tipoparaclinicos', component: TipoparaclinicosComponent, data:{titulo:'Tipos de paraclinicos'} },
       { path: 'tipohorarios', component: TipohorariosComponent, data:{titulo:'Tipos de horarios'} },
+      { path: 'pacientes', children:
+      [
+        {path: '', component: PacientesComponent, data:{titulo:'Todos los pacientes'}},
+        {path: 'agregarpaciente', component: FormPacienteComponent, data:{titulo:'Agregar paciente'}},
+        { path: 'agregarpaciente/:identificacion', component: FormPacienteComponent, data:{titulo:'Agregar paciente'}},
+        { path: 'perfil/:id', component: PerfilComponent, data:{titulo:'Perfil paciente'}},
+      ]},
+
+      // { }},
+
+
       { path: '', redirectTo: '/dashboard', pathMatch:'full' },
     ]
   },

@@ -18,7 +18,7 @@ export class PermisosComponent implements OnInit {
   vetanaSeleccionada:Ventana;
   totalVentanas:number;
   p:any=1;
-  
+
   listo:Ventana=null;
 
   rowSelectedTable:any;
@@ -26,20 +26,20 @@ export class PermisosComponent implements OnInit {
   limite=LIMITE;
   offset='0';
   buscar='';
-  
-  
+
+
   // @ViewChild('Acciones') acciones:Ventana;
 
   constructor(
     public _modalService:ModalService,
     public _permisosService:PermisosService,
     private _http: HttpClient
-  ) { 
+  ) {
   }
 
   ngOnInit(): void {
     this.getVentanas();
-    this._modalService.notificarUpload.subscribe(()=>this.getVentanas());    
+    this._modalService.notificarUpload.subscribe(()=>this.getVentanas());
   }
 
   getVentanas(){
@@ -67,7 +67,7 @@ export class PermisosComponent implements OnInit {
     if(ventana){
       this.listo=ventana;
     }
-     this.rowSelectedTable=child;
+    this.rowSelectedTable=child;
   }
 
 }

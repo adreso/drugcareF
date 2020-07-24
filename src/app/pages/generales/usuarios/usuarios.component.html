@@ -230,7 +230,7 @@
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <label for="role" class="input-group-text">Rol:</label>
+                                    <label for="role" class="input-group-text">Seleccionar rol:</label>
                                 </div>
                                 <input [formControlName]="'role'" for="role" editable="false" placeholder="Seleccione un rol" typeahead-editable="false" class="form-control" type="search" #instance="ngbTypeahead" #buscarRole name="role" [ngbTypeahead]="search" [inputFormatter]="formatter"
                                     [resultFormatter]="formatter" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" (keyup)="getRoles(buscarRole.value)">

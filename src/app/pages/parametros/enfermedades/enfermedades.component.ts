@@ -22,6 +22,9 @@ export class EnfermedadesComponent implements OnInit {
   offset='0';
   buscar='';
 
+  pasarEnfermedad:Enfermedad=null;
+  rowSelectedTable:any;
+
   constructor(
     public _parametrosService:ParametrosService,
     public _modalService:ModalService
@@ -53,5 +56,10 @@ export class EnfermedadesComponent implements OnInit {
     this.cargar();
   }
 
-
+  enfermedadParaclinico(child:any, enfermedad:Enfermedad){
+    if(enfermedad){
+      this.pasarEnfermedad=enfermedad;
+    }
+    this.rowSelectedTable=child;
+  }
 }
