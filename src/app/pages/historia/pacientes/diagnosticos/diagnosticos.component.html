@@ -1,24 +1,34 @@
 <ul class="list-group list-group-unbordered mb-3">
-    <li class="list-group-item" *ngFor="let diag of enfermedad_diag">
-      
-        <b>{{diag.enfermedade.nombre}}</b> {{diag.enfermedade.codigo}}
-    
-    </li>
- 
-   
-  </ul>
-  <form novalidate [formGroup]="thisForm" (ngSubmit)="agregar()" #userForm="ngForm">
-    <div class="input-group">
-      
-      
-      <input [formControlName]="'enfermedades'" for="enfermedades" editable="false" placeholder="Seleccione una enfermedad" typeahead-editable="false" class="form-control" type="search" #instance="ngbTypeahead" #buscarEnfermedad name="enfermedades" [ngbTypeahead]="search" [inputFormatter]="formatter"
-          [resultFormatter]="formatter" (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)" (keyup)="cargarCombo(buscarEnfermedad.value)">
-      <div class="input-group-prepend" *ngIf="(thisForm.get('enfermedades').touched || thisForm.get('enfermedades').dirty ) && thisForm.get('enfermedades').errors">
-          <app-button-error-validator *ngIf="thisForm.get('enfermedades')['errorMessage']" error="{{thisForm.get('enfermedades')['errorMessage']}}"></app-button-error-validator>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block"><b>Nueva Enfermedad</b></button>
+  <button (click)="mostrarAgregar=true" *ngIf="enfermedad_diag?.length===0 && !mostrarAgregar" type="button"
+    class="btn btn-outline-primary float-right" title="Agregar diagnostico adicional"><i class="fas fa-plus"></i>
+    Agregar diagnostico</button>
+
+  <li class="list-group-item" *ngFor="let diag of enfermedad_diag; let last = last;">
+    <i class="fas fa-disease" style="color: gray; font-size: 24px;"></i>{{'  '}}<b>{{ diag.enfermedade.nombre }}</b>
+    <button (click)="mostrarAgregar=true" *ngIf="last && !mostrarAgregar" type="button"
+      class="btn btn-outline-primary float-right" title="Agregar diagnostico adicional"><i
+        class="fas fa-plus"></i></button>
+  </li>
+</ul>
+<form [style.display]="mostrarAgregar ? '' : (!mostrarAgregar ? 'none' : null)" novalidate [formGroup]="thisForm"
+  (ngSubmit)="agregar()" #userForm="ngForm">
+  <div class="input-group">
+    <input [formControlName]="'enfermedades'" for="enfermedades" editable="false" placeholder="Listado enfermedades"
+      typeahead-editable="false" class="form-control" type="search" #instance="ngbTypeahead" #buscarEnfermedad
+      name="enfermedades" [ngbTypeahead]="search" [inputFormatter]="formatter" [resultFormatter]="formatter"
+      (focus)="focus$.next($event.target.value)" (click)="click$.next($event.target.value)"
+      (keyup)="cargarCombo(buscarEnfermedad.value)" />
+    <div class="input-group-prepend"
+      *ngIf="(thisForm.get('enfermedades').touched || thisForm.get('enfermedades').dirty) && thisForm.get('enfermedades').errors">
+      <app-button-error-validator *ngIf="thisForm.get('enfermedades')['errorMessage']"
+        error="{{ thisForm.get('enfermedades')['errorMessage'] }}">
+      </app-button-error-validator>
+    </div>
+    <button type="submit" class="btn btn-primary" title="Agregar diagnostico seleccionado">
+      <i class="fas fa-plus-square"></i>
+    </button>
+    <button type="submit" (click)="mostrarAgregar=false" class="btn btn-danger" title="Cancelar esta acción">
+      <i class="fas fa-minus-square"></i>
+    </button>
   </div>
 </form>
-
-
-  

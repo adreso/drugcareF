@@ -27,28 +27,34 @@ export class FormAccioneComponent implements OnInit {
   });
   }
 
-  cerrarModal(){
-    this._modalService.cerrarModal();
-    this._modalService.notificarUpload.emit(false);
-  }
+  // cerrarModal(){
+  //   this._modalService.cerrarModal();
+    //  this._modalService.notificarUpload.emit(false);
+  // }
 
+  cerrarModal(){
+    this._modalService.cerrarModalVentana("accione");
+  }
   guardar(){
     // console.log(this.accione);
     // if(!this.accione.id){
       this.accione.ventana=this.ventana;
     // }
     this._permisoService.guardarAccione(this.accione).subscribe(
-      (accione:any) =>{  
+      (accione:any) =>{
         this._modalService.notificarUpload.emit(this.accione);
         this.cerrarModal();
         this.accione=new Accione();
         Toast.fire({icon:'success', title:`Ventana ${accione.accion} guardada correctamente`});
-      }, 
+      },
         err=>ToastErrores(err)
       );
   }
 
-  focus(){
-    this.Field.nativeElement.focus();
-  }
+  focus(){}
+  //   setTimeout(()=>{
+
+  //     this.Field.nativeElement.focus();
+  //   })
+  // }
 }

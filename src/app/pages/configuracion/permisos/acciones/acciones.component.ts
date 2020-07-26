@@ -12,9 +12,8 @@ import { LIMITE } from '../../../../config/config';
   styles: []
 })
 export class AccionesComponent implements OnInit {
-  
+
   @Input() ventana:Ventana;
-  
 
   accione:Accione = new Accione();
   acciones:Accione[];
@@ -30,44 +29,50 @@ export class AccionesComponent implements OnInit {
     public _permisosService:PermisosService,
     public _modalService:ModalService
     ) {
-    
-   }
+
+  }
   ngOnInit(): void {
-      
+
     this.getAcciones();
     this._modalService.notificarUpload.subscribe(()=>this.getAcciones());
   }
 
   ngOnChanges(): void {
-     this.getAcciones();
+    this.getAcciones();
   }
- 
+
   getAcciones(){
     if(this.ventana){
       this._permisosService.cargarAcciones(this.limite, this.offset, this.buscar, this.ventana).subscribe(
-        acciones =>{    
+        acciones =>{
           setTimeout(()=>{
             this.totalAcciones=acciones.total;
             this.acciones=acciones.acciones;
-           });
+          });
         }
       );
     }
-}
-abrirModal(accione:Accione){
-  this.AccionSeleccionada=accione;
-  this._modalService.abrirModal();
-}
+  }
+// abrirModal(accione:Accione){
+//   console.log(accione);
+//   this.AccionSeleccionada=accione;
+//   this._modalService.abrirModal();
+// }
 
-verp(pe:any){
-  let limite=this.limite;
-  let offset = (pe-1)*(parseInt(limite));
-  this.offset=offset.toString();
-  this.getAcciones();
-}
+  abrirModal(accione:Accione){
+    this.AccionSeleccionada=accione;
+    this._modalService.abrirModalVentana("accione");
+  }
 
-verObservaciones(acciones:Accione){
-  swalInfo(acciones.observacion, 'Observaciones', 'Entendido');
-}
+  verp(pe:any){
+    let limite=this.limite;
+    let offset = (pe-1)*(parseInt(limite));
+    this.offset=offset.toString();
+    this.getAcciones();
+  }
+
+  verObservaciones(acciones:Accione){
+    swalInfo(acciones.observacion, 'Observaciones', 'Entendido');
+  }
 
 }

@@ -19,7 +19,7 @@ import { swalConfirm, Toast, ToastErrores } from '../../../../config/alertas';
 export class EnfermedadesParaclinicosComponent implements OnInit {
 
   //combo Typeahead
-  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  @ViewChild('instance', { static: true }) instance: NgbTypeahead;
   focus$ = new Subject<string>();
   click$ = new Subject<string>();
 
@@ -33,40 +33,40 @@ export class EnfermedadesParaclinicosComponent implements OnInit {
         : this.paraclinicos.filter(v => v.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
     );
   }
-  formatter = (x: {nombre: string}) => x.nombre;
-  buscarCombo='';
-// fin combo Typeahead
+  formatter = (x: { nombre: string }) => x.nombre;
+  buscarCombo = '';
+  // fin combo Typeahead
 
-paraclinicoForm:RxFormGroup;
+  paraclinicoForm: RxFormGroup;
 
 
-  paraclinicos:TipoParaclinico[];
+  paraclinicos: TipoParaclinico[];
 
-  @Input() enfermedad:Enfermedad;
+  @Input() enfermedad: Enfermedad;
 
-  enfermedadesParaclinico:TipoParaclinico = new TipoParaclinico();
-  tipoParaclinicos:TipoParaclinico[];
-  enfermedadParaclinicoSeleccionada:TipoParaclinico;
-  totalEnfermedadParaclinicos:number;
-  pe:any=1;
+  enfermedadesParaclinico: TipoParaclinico = new TipoParaclinico();
+  tipoParaclinicos: TipoParaclinico[];
+  enfermedadParaclinicoSeleccionada: TipoParaclinico;
+  totalEnfermedadParaclinicos: number;
+  pe: any = 1;
 
-  limite=LIMITE;
-  offset='0';
-  buscar='';
+  limite = LIMITE;
+  offset = '0';
+  buscar = '';
 
   constructor(
-    public _parametrosServices:ParametrosService,
-    public http:HttpClient,
+    public _parametrosServices: ParametrosService,
+    public http: HttpClient,
     private fb: RxFormBuilder,
-    public _parametrosService:ParametrosService
-    ) {}
+    public _parametrosService: ParametrosService
+  ) { }
 
   ngOnInit(): void {
 
     this.paraclinicoForm = <RxFormGroup>this.fb.group({
-      tipoparaclinico:['', RxwebValidators.required()]
+      tipoparaclinico: ['', RxwebValidators.required()]
     },
-      {abstractControlOptions: {tipoparaclinico:'blur'}}
+      { abstractControlOptions: { tipoparaclinico: 'blur' } }
     );
 
     this.getParaclinicosEnfermedad();
@@ -80,68 +80,68 @@ paraclinicoForm:RxFormGroup;
     this.getParaclinicosEnfermedad();
   }
 
-  getParaclinicosEnfermedad(){
-    if(this.enfermedad){
-      this._parametrosServices.cargar(this.limite, this.offset, this.buscar, "enfermedades/paraclinicos/"+this.enfermedad.id).subscribe(
-        enfermedades =>{
-          setTimeout(()=>{
-            this.totalEnfermedadParaclinicos=enfermedades.total;
-            this.tipoParaclinicos=enfermedades.enfermedades[0].tipoparaclinicos;
+  getParaclinicosEnfermedad() {
+    if (this.enfermedad) {
+      this._parametrosServices.cargar(this.limite, this.offset, this.buscar, "enfermedades/paraclinicos/" + this.enfermedad.id).subscribe(
+        enfermedades => {
+          setTimeout(() => {
+            this.totalEnfermedadParaclinicos = enfermedades.total;
+            this.tipoParaclinicos = enfermedades.enfermedades[0].tipoparaclinicos;
           });
         }
       );
     }
-}
-
-verp(pe:any){
-  let limite=this.limite;
-  let offset = (pe-1)*(parseInt(limite));
-  this.offset=offset.toString();
-  this.getParaclinicosEnfermedad();
-}
-
-onFormsChanges(){
-  this.paraclinicoForm.get('tipoparaclinico').valueChanges.subscribe(val => {
-    if (typeof(val) === 'string') {
-      const empFinded = this.paraclinicos.find(x =>
-          (x.nombre.toUpperCase()) === val.toUpperCase() || x.nombre.toUpperCase() === val.toUpperCase());
-      this.paraclinicoForm.get('tipoparaclinico').patchValue(empFinded);
-    }
-  });
-
-}
-
-getParaclinicos(buscar:string){
-  this._parametrosService.cargar('5', '0', buscar, 'tipoparaclinicos').subscribe(
-    tipoparaclinicos =>{
-      this.paraclinicos=tipoparaclinicos.tipoparaclinicos;
-    }
-  )
-}
-agregar(){
-  if(this,this.paraclinicoForm.invalid){
-    return Toast.fire({icon:'warning', title:`Debe seleccionar un paraclinico`});
   }
-  // if(this.paraclinicoForm.valid){
-    this.paraclinicoForm.value.enfermedad=this.enfermedad;
+
+  verp(pe: any) {
+    let limite = this.limite;
+    let offset = (pe - 1) * (parseInt(limite));
+    this.offset = offset.toString();
+    this.getParaclinicosEnfermedad();
+  }
+
+  onFormsChanges() {
+    this.paraclinicoForm.get('tipoparaclinico').valueChanges.subscribe(val => {
+      if (typeof (val) === 'string') {
+        const empFinded = this.paraclinicos.find(x =>
+          (x.nombre.toUpperCase()) === val.toUpperCase() || x.nombre.toUpperCase() === val.toUpperCase());
+        this.paraclinicoForm.get('tipoparaclinico').patchValue(empFinded);
+      }
+    });
+
+  }
+
+  getParaclinicos(buscar: string) {
+    this._parametrosService.cargar('5', '0', buscar, 'tipoparaclinicos').subscribe(
+      tipoparaclinicos => {
+        this.paraclinicos = tipoparaclinicos.tipoparaclinicos;
+      }
+    )
+  }
+  agregar() {
+    if (this, this.paraclinicoForm.invalid) {
+      return Toast.fire({ icon: 'warning', title: `Debe seleccionar un paraclinico` });
+    }
+    // if(this.paraclinicoForm.valid){
+    this.paraclinicoForm.value.enfermedad = this.enfermedad;
     this._parametrosService.guardar(this.paraclinicoForm.value, 'enfermedades/paraclinicos').subscribe(
-      paraclinico =>{
-        Toast.fire({icon:'success', title:`Paraclinico agregado correctamente`});
+      paraclinico => {
+        Toast.fire({ icon: 'success', title: `Paraclinico agregado correctamente` });
         this.getParaclinicosEnfermedad();
       },
-      err =>ToastErrores(err)
+      err => ToastErrores(err)
     );
-  // }
-}
+    // }
+  }
 
-anular(idparaclinico){
-  swalConfirm('¿Esta seguro que desea anular este paraclinico?', 'Se quitará la asociación de esta enfermedad!').then(
-    (resultado) =>{
-      if(resultado.value){
+  anular(idparaclinico) {
+    swalConfirm('¿Esta seguro que desea anular este paraclinico?', 'Se quitará la asociación de esta enfermedad!').then(
+      (resultado) => {
+        if (resultado.value) {
 
-        Toast.fire({icon:'success', title:`Paraclinico anulado correctamente`});
+          Toast.fire({ icon: 'success', title: `Paraclinico anulado correctamente` });
+        }
       }
-    }
-  )
-}
+    )
+  }
 }

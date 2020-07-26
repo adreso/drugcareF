@@ -13,18 +13,18 @@ import { MenusService } from '../../../../services/settings/menus.service';
   styles: []
 })
 export class FormVentanaComponent implements OnInit {
-  
+
   @Input() ventana:Ventana;
   @ViewChild("descripcion") Field: ElementRef;
-  
+
   menus:Menu[];
 
   constructor(
     public _modalService:ModalService,
     public _permisoService:PermisosService,
     public _menuService:MenusService
-  ) { 
-    
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -35,19 +35,20 @@ export class FormVentanaComponent implements OnInit {
   }
 
   cerrarModal(){
-    this._modalService.cerrarModal();
-    this._modalService.notificarUpload.emit(false);
+    // this._modalService.cerrarModal();
+    // this._modalService.notificarUpload.emit(false);
+    this._modalService.cerrarModalVentana("permiso");
   }
 
   guardar(){
     this._permisoService.guardarVentana(this.ventana).subscribe(
-      (ventana:any) =>{  
+      (ventana:any) =>{
         this._modalService.notificarUpload.emit(this.ventana);
         this.cerrarModal();
         this.ventana=new Ventana();
         Toast.fire({icon:'success', title:`Ventana ${ventana.descripcion} guardada correctamente`});
-      }, 
-      
+      },
+
         err=>{
           ToastErrores(err);
         }
@@ -71,6 +72,6 @@ export class FormVentanaComponent implements OnInit {
   }
 
   focus(){
-      this.Field.nativeElement.focus();
+      // this.Field.nativeElement.focus();
   }
 }

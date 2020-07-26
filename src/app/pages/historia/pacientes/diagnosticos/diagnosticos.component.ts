@@ -9,6 +9,7 @@ import { Enfermedad } from 'src/app/models/parametros/enfermedades.models';
 import { RxFormGroup, RxFormBuilder, RxwebValidators } from '@rxweb/reactive-form-validators';
 import { Toast, ToastErrores } from 'src/app/config/alertas';
 import { Paciente } from 'src/app/models/historia/paciente.model';
+import { resetForm } from '../../../../config/messageValidators';
 
 
 
@@ -21,106 +22,116 @@ import { Paciente } from 'src/app/models/historia/paciente.model';
 })
 export class DiagnosticosComponent implements OnInit {
 
-//combo Typeahead
-@ViewChild('instance', {static: true}) instance: NgbTypeahead;
-focus$ = new Subject<string>();
-click$ = new Subject<string>();
+  //combo Typeahead
+  @ViewChild('instance', { static: true }) instance: NgbTypeahead;
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
 
-search = (text$: Observable<string>) => {
-  const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
-  const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
-  const inputFocus$ = this.focus$;
+  search = (text$: Observable<string>) => {
+    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
+    const inputFocus$ = this.focus$;
+    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+      map(term => (term === '' ? this.enfermedades
+        : this.enfermedades.filter(v => v.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
+    );
+  }
+  formatter = (x: { nombre: string }) => x.nombre;
+  buscarCombo = '';
+  // fin combo Typeahead
 
-  
 
-  return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
-    map(term => (term === '' ? this.enfermedades
-      : this.enfermedades.filter(v => v.nombre.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
-  );
-}
-formatter = (x: {nombre: string}) => x.nombre;
-buscarCombo='';
-// fin combo Typeahead
+  @Input() paciente: Paciente = new Paciente();
+  estado = '1';
+  enfermedad_diag: any[];
+  enfermedades: Enfermedad[];
+  thisForm: RxFormGroup;
+  buscar = '';
 
-  @Input() paciente:Paciente;
-  estado='1';
-  enfermedad_diag:any[];
-  enfermedades:Enfermedad[];
-  
-  thisForm:RxFormGroup;
-  buscar='';
+  mostrarAgregar: boolean;
 
   constructor(
-     private _parametrosService:ParametrosService,
-     private fb:RxFormBuilder
+    private _parametrosService: ParametrosService,
+    private fb: RxFormBuilder
 
 
   ) { }
 
   ngOnInit(): void {
-  this.cargarEnfermedades();
-  
-  this.thisForm = <RxFormGroup>this.fb.group({
-    enfermedades:['', RxwebValidators.required()]
-  },
-    {abstractControlOptions: {enfermedades:'blur'}}
-  );
-
-  
-  setTimeout(() => {
-    this.onFormsChanges();
-  });
-  this.cargarCombo(this.buscar); 
-
-  }
-
-  ngOnChanges():void{
     this.cargarEnfermedades();
+
+    this.thisForm = <RxFormGroup>this.fb.group({
+      enfermedades: ['', RxwebValidators.required()]
+    },
+      { abstractControlOptions: { enfermedades: 'blur' } }
+    );
+
+
+
+    this.cargarCombo(this.buscar);
+
   }
 
-  agregar(){
-    if(this,this.thisForm.invalid){
-      return Toast.fire({icon:'warning', title:`Debe seleccionar una enfermedad`});
+  ngOnChanges(): void {
+    this.cargarEnfermedades();
+    setTimeout(() => {
+      this.onFormsChanges();
+      this.mostrarAgregar = false;
+    });
+  }
+
+  agregar() {
+    if (this, this.thisForm.invalid) {
+      return Toast.fire({ icon: 'warning', title: `Debe seleccionar una enfermedad` });
     }
     // if(this.thisForm.valid){
-      this.thisForm.value.paciente=this.paciente;
-      this._parametrosService.guardar(this.thisForm.value, 'diagnosticos').subscribe(
-        paraclinico =>{
-          Toast.fire({icon:'success', title:`Enfermedad agregada correctamente`});
-          this.cargarEnfermedades();
-        },
-        err =>ToastErrores(err)
-      );
+    this.thisForm.value.paciente = this.paciente;
+    this._parametrosService.guardar(this.thisForm.value, 'diagnosticos').subscribe(
+      enfermedades => {
+        Toast.fire({ icon: 'success', title: `Enfermedad agregada correctamente` });
+        this.cargarEnfermedades();
+        this.mostrarAgregar = false;
+        this.resetearForm();
+      },
+      err => ToastErrores(err)
+    );
+  }
+  resetearForm() {
+    this.thisForm.reset();
+    resetForm(this.thisForm);
+  }
+  cargarEnfermedades() {
+    if (this.paciente.id) {
+      this._parametrosService.cargarConEstado('diagnosticos/' + this.paciente.id, this.estado)
+        .subscribe(diagnosticos => {
+          this.enfermedad_diag = diagnosticos;
+        })
+    }
+
   }
 
-  cargarEnfermedades(){
-    this._parametrosService.cargarConEstado('diagnosticos/'+this.paciente.id,this.estado)
-    .subscribe(diagnosticos => {
-           this.enfermedad_diag= diagnosticos;
-           console.log(diagnosticos);
-    })
-  }
 
+  cargarCombo(busca: string) {
+    this._parametrosService.cargar('5', '0', busca, 'enfermedades').subscribe(
+      enfermedades => {
 
-  cargarCombo(busca:string){
-    this._parametrosService.cargar('5','0', busca, 'enfermedades').subscribe(
-      enfermedades =>{
-       
-        this.enfermedades=enfermedades.enfermedades;
+        this.enfermedades = enfermedades.enfermedades;
       }
     )
   }
 
-  onFormsChanges(){
+  onFormsChanges() {
     this.thisForm.get('enfermedades').valueChanges.subscribe(val => {
-      if (typeof(val) === 'string') {
+      if (typeof (val) === 'string') {
         const empFinded = this.enfermedades.find(x =>
-            (x.nombre.toUpperCase()) === val.toUpperCase() || x.nombre.toUpperCase() === val.toUpperCase());
+          (x.nombre.toUpperCase()) === val.toUpperCase() || x.nombre.toUpperCase() === val.toUpperCase());
         this.thisForm.get('enfermedades').patchValue(empFinded);
       }
     });
-  
+
   }
+
+
 
 
 }
