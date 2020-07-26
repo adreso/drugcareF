@@ -11,8 +11,8 @@ import { Paciente } from '../../../../models/historia/paciente.model';
 })
 export class PerfilComponent implements OnInit {
 
-  paciente:Paciente;
-
+  paciente:Paciente=new Paciente();
+  
   constructor(
     private route: ActivatedRoute,
     private _parametrosService:ParametrosService
@@ -20,6 +20,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargar();
+  
   }
 
   cargar(){

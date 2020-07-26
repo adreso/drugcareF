@@ -12,12 +12,12 @@
                     src="../../../../assets/dist/img/user4-128x128.jpg"
                     alt="User profile picture">
               </div>
+             
+              <h3 class="profile-username text-center">{{paciente.tercero.pnombre+ ' ' + paciente.tercero.snombre + ' ' + paciente.tercero.papellido + ' '+ paciente.tercero.sapellido}}</h3>
 
-              <h3 class="profile-username text-center">{{paciente.tercero.pnombre + ' ' + paciente.tercero.snombre + ' ' + paciente.tercero.papellido + ' '+ paciente.tercero.sapellido}}</h3>
-
-              <p class="text-muted text-center">{{paciente.tercero.tipoidentificacion +'. '+ paciente.tercero.identificacion}}</p>
-
-              <ul class="list-group list-group-unbordered mb-3">
+              <p class="text-muted text-center">{{paciente.tercero.tipoidentificacion +'. '+ paciente.tercero.identificacion}}</p> 
+               <app-diagnosticos [paciente]="paciente"></app-diagnosticos>
+              <!-- <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
                   <b>Followers</b> <a class="float-right">1,322</a>
                 </li>
@@ -27,9 +27,9 @@
                 <li class="list-group-item">
                   <b>Friends</b> <a class="float-right">13,287</a>
                 </li>
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              </ul> -->
+              <!-- {{paciente | json}} -->
+            
             </div>
             <!-- /.card-body -->
           </div>

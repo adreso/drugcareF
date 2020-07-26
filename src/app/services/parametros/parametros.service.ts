@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { cargarGenerico, guardarGenerico, cargarIndividual } from '../../config/GenericoCrud';
+import { cargarGenerico, guardarGenerico, cargarIndividual ,cargarConEstado} from '../../config/GenericoCrud';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -15,6 +15,10 @@ export class ParametrosService {
 
   cargarIndividual(ruta){
     return cargarIndividual(this.http, '/api/'+ruta);
+  }
+ 
+  cargarConEstado(ruta,estado){
+  return  cargarConEstado(this.http,'/api/'+ruta,estado); 
   }
 
   guardar(parametro:any, ruta:string){

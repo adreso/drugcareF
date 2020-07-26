@@ -44,6 +44,7 @@ import { EnfermedadesParaclinicosComponent } from './parametros/enfermedades/enf
 import { PacientesComponent } from './historia/pacientes/pacientes.component';
 import { FormPacienteComponent } from './historia/pacientes/form-paciente/form-paciente.component';
 import { PerfilComponent } from './historia/pacientes/perfil/perfil.component';
+import { DiagnosticosComponent } from './historia/pacientes/diagnosticos/diagnosticos.component';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { PerfilComponent } from './historia/pacientes/perfil/perfil.component';
     PacientesComponent,
     FormPacienteComponent,
     PerfilComponent,
+    DiagnosticosComponent,
     
   ],
   imports: [

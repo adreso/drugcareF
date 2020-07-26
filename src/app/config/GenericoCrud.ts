@@ -36,6 +36,16 @@ export const guardarGenerico =(modelo:any, ruta:string, http:HttpClient) =>{
     );
   }
 
+  export const cargarConEstado= (   http:HttpClient, ruta:string, estado) =>{
+    const headers = new HttpHeaders({'estado':estado});
+    let url = URL_SERVICIOS + ruta;
+    return http.get(url, {headers}).pipe(
+      map((resp:any)=>{
+        return resp;
+      })
+    );
+  }
+
   export const cargarIndividual = (http: HttpClient, ruta:string) =>{
     let url = URL_SERVICIOS + ruta;
     return http.get(url).pipe(
